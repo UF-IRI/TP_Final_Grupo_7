@@ -44,14 +44,14 @@ time_t PasarAFecha(string dato)
 	month = stoi(auxM);
 	year = stoi(auxY);
 
-	/*
+	
 	tm date{};
-	date.tm_year = year;
-	date.tm_mon = month;
+	date.tm_year = year-1900;
+	date.tm_mon = month-1;
 	date.tm_mday = day;
 
 	time_t finalDate = mktime(&date);
-	*/
+	
 
 	return finalDate;
 }
