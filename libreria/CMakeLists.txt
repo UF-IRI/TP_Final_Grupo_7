@@ -1,6 +1,6 @@
 ## >>>>>>>>>>>>>>>
 ## >>>>>>>>>>>>>>>
-add_library(libreria dummy.cpp "libreria.h")
+add_library(libreria dummy.cpp "libreria.h" "pan.cpp")
 ## <<<<<<<<<<<<<<<
 ## <<<<<<<<<<<<<<<
 
