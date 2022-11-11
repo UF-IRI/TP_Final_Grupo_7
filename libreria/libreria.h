@@ -1,7 +1,12 @@
 #include <string>
+#include <ctime>
+#include <iostream>
+#include <stringstream>
 
 using namespace std;
 
+
+//STRUCTS:
 
 typedef struct fecha {
 	int day, month, year;
@@ -42,3 +47,8 @@ typedef struct pacient {
 	fecha dateBirth;
 	unsigned int idInsurance;
 }pacient;
+
+
+//FUNCIONES:
+
+time_t PasarAFecha(string dato);

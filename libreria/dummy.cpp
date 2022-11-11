@@ -1,11 +1,9 @@
 /*
 DUDAS:
--hay que eliminar los pacientes que archivamos?
-	-sino, hay que crear un archivo de archivados? que datos le pasamos a ese archivo?
--hacer lista general o 5 listas?
--ultimo paso es armar la lista de secretaria o hay que hacer la funcion llamar?
 
+GENERAR UNA LISTA CON DATOS DEL PACIENTE Y DEL CONTACTO DE LOS RECUPERABLES PARA PASARLE A LA SECRETARIA
 
-
+STRING:
+REGEX PARA SEPARAR Y DESPUES STOI PARA CONVERTIRLO A INT --> DE INT A TIME_T
 
 */
