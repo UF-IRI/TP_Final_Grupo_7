@@ -2,19 +2,17 @@
 #include <ctime>
 #include <iostream>
 #include <stringstream>
+#include <fstream>
 
 using namespace std;
 
 
 //STRUCTS:
 
-typedef struct fecha {
-	int day, month, year;
-} fecha;
-
 typedef struct appointment {
 	unsigned int dniPacient;
-	fecha dateAppointment;
+	string dateSaolicited;
+	string dateAppointment;
 	bool asistance;
 	string idDoctor;
 } appointment;
@@ -40,15 +38,20 @@ typedef struct insurance {
 } insurance;
 
 typedef struct pacient {
-	unsigned int dni;
+	unsigned int dniPacient;
 	string namePacient;
 	string lastNAmePacient;
 	string sex;
-	fecha dateBirth;
+	string dateBirth;
 	unsigned int idInsurance;
+	string state;
 }pacient;
 
 
 //FUNCIONES:
 
 time_t PasarAFecha(string dato);
+void readPacients(string nameFile, int* sizeListPacient, pacient*& listPatien);
+void addPacient(int* sizeListPacient, pacient*& listPacient, pacient aux);
+void readAppointment(string nameFileAppointment, int* sizeListAppointment, pacient*& listAppointment);
+
