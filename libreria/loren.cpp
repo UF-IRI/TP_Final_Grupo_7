@@ -61,14 +61,26 @@ void readAppointment(string nameFileAppointment, int* sizeListAppointment, appoi
 
 time_t lastAppointment(unsigned int dniAux, int* sizeListAppointment, appointment*& listAppointment) //funcion q te devuelve la ultima fecha de consulta de un paciente recibido por dni
 {
-	time_t date;
-	string lastDate;
+	time_t dateaux, lastDateT;
+	string lastDateString;
+	long int x = 0;
 	bool first = false;
 	for (int i = 0; i < *sizeListAppointment; i++) {
-		if (listAppointment[i].dniPacient == dniAux && !(first))
-			lastDate = listAppointment[i].dateAppointment;
-
+		if (listAppointment[i].dniPacient == dniAux && !(first)) {
+			lastDateString = listAppointment[i].dateAppointment;	//inicializo la ultima fecha en la primera q encuentre de ese paciente
+			lastDateT = pasarfecha(lastDateString); //me paso la ultima fecha a time_t para comparar
+		}
+			 
+		if (listAppointment[i].dniPacient == dniAux)
+		{
+			dateaux = pasarFecha(listAppointment[i].dateAppointment); //me paso la fecha a time_t para comparar
+			x = difftime(date1, lastDateT); //comparo las dos fechas
+											
+			// prueba:    t2=2022, t1= 2003, difftime(t2,t1) = 599616000,  t2-t1.
+			if (x < 0) //si x es negativo, date1 fue despues que lastDateT
+				lastDateT = dateaux;
+		}
+		return lastDateT;
 	}
-	//todavia no la termine
 
 }

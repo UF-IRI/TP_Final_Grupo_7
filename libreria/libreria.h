@@ -50,8 +50,8 @@ typedef struct pacient {
 
 //FUNCIONES:
 
-time_t PasarAFecha(string dato);
+time_t pasarAFecha(string dato);
 void readPacients(string nameFile, int* sizeListPacient, pacient*& listPatien);
 void addPacient(int* sizeListPacient, pacient*& listPacient, pacient aux);
-void readAppointment(string nameFileAppointment, int* sizeListAppointment, pacient*& listAppointment);
-
+void readAppointment(string nameFileAppointment, int* sizeListAppointment, appointment*& listAppointment);
+time_t lastAppointment(unsigned int dniAux, int* sizeListAppointment, appointment*& listAppointment);
