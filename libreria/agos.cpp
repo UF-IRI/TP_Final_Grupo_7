@@ -53,3 +53,4 @@ time_t pasarAFecha(string dato)
 
 	return finalDate;
 }
+

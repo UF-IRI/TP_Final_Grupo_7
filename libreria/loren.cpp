@@ -37,13 +37,14 @@ void addPacient(int* sizeListPacient, pacient*& listPacient, pacient aux) //esta
 		listAux[i] = listPacient[i];
 		i++;
 	}
+	listAux[i] = aux;
 	delete[]listPacient;
 	listPacient = listAuxP;
 	return;
 }
 
 
-void readAppointment(string nameFileAppointment, int* sizeListAppointment, appointment *& listAppointment)
+void readAppointment(string nameFileAppointment, int* sizeListAppointment, appointment *& listAppointment) //ver
 {
 	*sizeListAppointment = *sizeListAppointment + 1;
 	int i = 0;
@@ -69,15 +70,16 @@ time_t lastAppointment(unsigned int dniAux, int* sizeListAppointment, appointmen
 		if (listAppointment[i].dniPacient == dniAux && !(first)) {
 			lastDateString = listAppointment[i].dateAppointment;	//inicializo la ultima fecha en la primera q encuentre de ese paciente
 			lastDateT = pasarfecha(lastDateString); //me paso la ultima fecha a time_t para comparar
+			first = true;
 		}
 			 
 		if (listAppointment[i].dniPacient == dniAux)
 		{
 			dateaux = pasarFecha(listAppointment[i].dateAppointment); //me paso la fecha a time_t para comparar
-			x = difftime(date1, lastDateT); //comparo las dos fechas
+			x = difftime(dateaux, lastDateT); //comparo las dos fechas
 											
 			// prueba:    t2=2022, t1= 2003, difftime(t2,t1) = 599616000,  t2-t1.
-			if (x < 0) //si x es negativo, date1 fue despues que lastDateT
+			if (x > 0) //si x es negativo, date1 fue despues que lastDateT
 				lastDateT = dateaux;
 		}
 		return lastDateT;
