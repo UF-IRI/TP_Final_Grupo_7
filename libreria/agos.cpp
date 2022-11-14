@@ -54,3 +54,21 @@ time_t convertDate(string dato)
 	return finalDate;
 }
 
+void newFile(string SecretaryFileName, pacient*& listPacient, int size)
+{
+	fstream fp;
+
+	fp.open(SecretaryFileName, ios::out);
+	if (!(fp.is_open()))
+		return;
+
+	fp << "DNI, Nombre, Apellido, ObraSocial" << endl;
+	for (int i = 0; i < size; i++)
+	{
+		fp << listPacient[i].dni << " , " << listPacient[i].namePacient << " , " << listPacient[i].lastNAmePacient << " , " << listPacient[i].idInsurance << endl;
+	}
+
+	fp.close();
+
+}
+
