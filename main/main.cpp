@@ -1,10 +1,7 @@
 #include "iri.cpp"
 #include <iostream>
+#include "libreria.h"
 
 int main() {
 
-    std::cout << "Hello World TP_Final";
-
-
-    return EXIT_SUCCESS;
 }
