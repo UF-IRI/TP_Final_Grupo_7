@@ -20,6 +20,3 @@ bool keepingUpWithThePacients(pacient aux, int sizeListAppointment, appointment*
 }
 
 
-
-
-
