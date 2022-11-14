@@ -10,8 +10,8 @@ void readPacients(string nameFilePacient, int* sizeListPacient, pacient *& listP
 	if (!(filePacient.is_open()))
 		return;
 	string dummy;
-	string death1 = "fallecido", death2 = "Fallecido";
 	bool keep;
+
 	dummy = getline(cin, filePacient); //leo la primera linea del csv (texto inutil), habria q ver si funciona xq me da miedo el getline
 	pacient aux;
 

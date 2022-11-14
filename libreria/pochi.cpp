@@ -3,5 +3,11 @@
 
 bool keepingUpWithThePacients(pacient aux)
 {
+	bool stays;
 
+
+
+
+
+	return stays;
 }
