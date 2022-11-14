@@ -79,28 +79,37 @@ void addAppointment(int* sizeListAppointment, appointment *& listAppointment, ap
 }
 
 
-time_t lastAppointment(unsigned int dniAux, int sizeListAppointment, appointment* listAppointment) //funcion q te devuelve la ultima fecha de consulta de un paciente recibido por dni
+time_t lastAppointment(unsigned int dniAux, int sizeListAppointment, appointment* listAppointment, bool	*went) //funcion q te devuelve la ultima fecha de consulta de un paciente recibido por dni
 {
 	time_t dateaux, lastDateT;
 	string lastDateString;
 	long int x = 0;
 	bool first = false;
+
 	for (int i = 0; i < *sizeListAppointment; i++) {
 		if (listAppointment[i].dniPacient == dniAux && !(first)) {
 			lastDateString = listAppointment[i].dateAppointment;	//inicializo la ultima fecha en la primera q encuentre de ese paciente
-			lastDateT = pasarfecha(lastDateString); //me paso la ultima fecha a time_t para comparar
+			lastDateT = convertDate(lastDateString); //me paso la ultima fecha a time_t para comparar
 			first = true;
+			*went = listAppointment[i].asistance;
 		}
 			 
 		if (listAppointment[i].dniPacient == dniAux)
 		{
 			dateaux = convertDate(listAppointment[i].dateAppointment); //me paso la fecha a time_t para comparar
 			x = difftime(dateaux, lastDateT); //comparo las dos fechas
-											
+
 			// prueba:    t2=2022, t1= 2003, difftime(t2,t1) = 599616000,  t2-t1.
-			if (x > 0) //si x es positivo, date1 fue despues que lastDateT
+			if (x > 0) //si x es positivo, dateaux fue despues que lastDateT
+			{
 				lastDateT = dateaux;
+				*went = listAppointment[i].asistance;
+			}
 		}
-		return lastDateT;
+		else
+			latDateT = 0;
 	}
+	return lastDateT;
+
 }
+
