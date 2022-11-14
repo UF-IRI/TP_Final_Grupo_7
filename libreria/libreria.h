@@ -54,6 +54,7 @@ typedef struct pacient {
 //FUNCIONES:
 //AGOS
 time_t convertDate(string dato);
+void newFile(string SecretaryFileName, pacient*& listPacient, int size);
 //LOREN
 void readPacients(string nameFilePacient, int* sizeListPacient, pacient*& listPacient);
 void addPacient(int* sizeListPacient, pacient*& listPacient, pacient aux);
