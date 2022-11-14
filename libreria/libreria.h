@@ -11,8 +11,7 @@ using namespace std;
 
 typedef struct appointment {
 	unsigned int dniPacient;
-	string dateSaolicited;
-	string dateAppointment;
+	time_t dateAppointment;
 	bool asistance;
 	string idDoctor;
 } appointment;
@@ -38,14 +37,21 @@ typedef struct insurance {
 } insurance;
 
 typedef struct pacient {
-	unsigned int dniPacient;
+	long unsigned int dni;
 	string namePacient;
 	string lastNAmePacient;
-	string sex;
-	string dateBirth;
-	unsigned int idInsurance;
-	string state;
+	char sex;
+	time_t dateBirth;
+	string state; //muerto, internado, no se sabe
+	string idInsurance;
 }pacient;
+
+
+typedef struct general {
+
+	long unsigned int dni;
+
+};
 
 
 //FUNCIONES:
