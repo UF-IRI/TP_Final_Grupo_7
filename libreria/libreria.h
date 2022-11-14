@@ -58,7 +58,7 @@ time_t convertDate(string dato);
 void readPacients(string nameFilePacient, int* sizeListPacient, pacient*& listPacient);
 void addPacient(int* sizeListPacient, pacient*& listPacient, pacient aux);
 void readAppointment(string nameFileAppointment, int* sizeListAppointment, appointment*& listAppointment);
-time_t lastAppointment(unsigned int dniAux, int* sizeListAppointment, appointment*& listAppointment);
+time_t lastAppointment(unsigned int dniAux, int sizeListAppointment, appointment* listAppointment);
 void addAppointment(int* sizeListAppointment, appointment*& listAppointment, appointment aux);
 //ALMA
 

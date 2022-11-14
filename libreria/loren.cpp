@@ -79,7 +79,7 @@ void addAppointment(int* sizeListAppointment, appointment *& listAppointment, ap
 }
 
 
-time_t lastAppointment(unsigned int dniAux, int* sizeListAppointment, appointment*& listAppointment) //funcion q te devuelve la ultima fecha de consulta de un paciente recibido por dni
+time_t lastAppointment(unsigned int dniAux, int sizeListAppointment, appointment* listAppointment) //funcion q te devuelve la ultima fecha de consulta de un paciente recibido por dni
 {
 	time_t dateaux, lastDateT;
 	string lastDateString;
