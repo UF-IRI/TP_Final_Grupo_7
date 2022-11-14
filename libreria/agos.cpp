@@ -72,3 +72,42 @@ void newFile(string SecretaryFileName, pacient*& listPacient, int size)
 
 }
 
+void secretary(string SecretaryFileName) //NO LA TERMINE NO TOQUEN NADA
+{
+	srand(NULL);
+
+	int comeBack, change, answered, satisfied; //%2 para 0 y 1
+	
+	fstream fp;
+
+	fp.open(SecretaryFileName, ios::in);
+	if (!(fp.open()))
+		return;
+
+	while (fp1)
+	{
+		for (int i = 0; i < 10; i++) //lamo como maximo 10 veces cada paciente
+		{
+			answered = rand() % 2; //0: no contesto, 1: contesto
+			if (answered == 1)
+			{
+				comeBack = rand() % 2;//0: no quiere volver, 1: quiere volver
+				if (comeBack == 1)
+				{
+					change = rand()%;/////////////
+					switch (change)
+					{
+					case 0:
+					{
+						
+					}
+					}
+
+				}
+			}
+		}
+	}
+
+
+}
+
