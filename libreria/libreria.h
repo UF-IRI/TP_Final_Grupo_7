@@ -61,4 +61,6 @@ void readAppointment(string nameFileAppointment, int* sizeListAppointment, appoi
 time_t lastAppointment(unsigned int dniAux, int* sizeListAppointment, appointment*& listAppointment);
 void addAppointment(int* sizeListAppointment, appointment*& listAppointment, appointment aux);
 //ALMA
+
 //POCHI
+bool keepingUpWithThePacients(pacient aux);

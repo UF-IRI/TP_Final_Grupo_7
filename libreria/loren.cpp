@@ -11,15 +11,16 @@ void readPacients(string nameFilePacient, int* sizeListPacient, pacient *& listP
 		return;
 	string dummy;
 	string death1 = "fallecido", death2 = "Fallecido";
-
+	bool keep;
 	dummy = getline(cin, filePacient); //leo la primera linea del csv (texto inutil), habria q ver si funciona xq me da miedo el getline
-
 	pacient aux;
+
 	while (filePacient) {
+		keep = false;
 		filePacient >> aux.dni >> dummy >> aux.namePacient >> dummy >> aux.lastNAmePacient >> dummy
 			>> aux.sex >> dummy >> aux.dateBirth >> dummy >> aux.state >> dummy >> aux.idInsurance;
-
-		if (aux.state != death1 && aux.state != death2) //si no esta muerto lo paso a la funcion y lo agrego a la lista
+		keep = keepingUpWithThePacients(aux); //función que se fija si el paciente es recuperable --> ultima consulta hace menos de 10 años
+		if (keep) //si no esta muerto lo paso a la funcion y lo agrego a la lista
 			addPacient(sizeList, listPacient, aux);
 	}
 	filePacient.close;
