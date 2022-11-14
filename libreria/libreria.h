@@ -52,10 +52,13 @@ typedef struct pacient {
 
 
 //FUNCIONES:
-
+//AGOS
 time_t convertDate(string dato);
+//LOREN
 void readPacients(string nameFilePacient, int* sizeListPacient, pacient*& listPacient);
 void addPacient(int* sizeListPacient, pacient*& listPacient, pacient aux);
 void readAppointment(string nameFileAppointment, int* sizeListAppointment, appointment*& listAppointment);
 time_t lastAppointment(unsigned int dniAux, int* sizeListAppointment, appointment*& listAppointment);
 void addAppointment(int* sizeListAppointment, appointment*& listAppointment, appointment aux);
+//ALMA
+//POCHI
