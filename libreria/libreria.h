@@ -62,7 +62,7 @@ typedef struct secretaryList {
 //AGOS
 time_t convertDate(string dato);
 void newFile(string SecretaryFileName, pacient*& listPacient, int size);
-void secretary(string SecretaryFileName, string AppointmentFileName, string PacientFileName, string ContactsFileName);
+void secretary(string SecretaryFileName, int* sizeFile, string MedicalInsuranceFile);
 //LOREN
 void readPacients(string nameFilePacient, int* sizeListPacient, pacient*& listPacient);
 void addPacient(int* sizeListPacient, pacient*& listPacient, pacient aux);
