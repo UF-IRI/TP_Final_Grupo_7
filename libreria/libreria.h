@@ -49,6 +49,13 @@ typedef struct pacient {
 	string idInsurance;
 }pacient;
 
+typedef struct secretaryList {
+	string name;
+	string lastName;
+	long unsigned int dni;
+	string medicalInsurance;
+};
+
 
 
 //FUNCIONES:
