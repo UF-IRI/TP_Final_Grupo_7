@@ -65,4 +65,4 @@ void addAppointment(int* sizeListAppointment, appointment*& listAppointment, app
 //ALMA
 void findContact(string nameFileContacts, contact* aux, long unsigned int DNI);
 //POCHI
-bool keepingUpWithThePacients(pacient aux);
+bool keepingUpWithThePacients(pacient aux, int sizeListAppointment, appointment *listAppointment);
