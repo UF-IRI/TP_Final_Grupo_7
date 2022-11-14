@@ -2,7 +2,7 @@
 
 #include "libreria.h"
 
-time_t pasarAFecha(string dato)
+time_t convertDate(string dato)
 {
 	int i = 0;
 	int day, month, year;
