@@ -56,7 +56,7 @@ typedef struct general {
 
 //FUNCIONES:
 
-time_t pasarAFecha(string dato);
+time_t convertDate(string dato);
 void readPacients(string nameFile, int* sizeListPacient, pacient*& listPatien);
 void addPacient(int* sizeListPacient, pacient*& listPacient, pacient aux);
 void readAppointment(string nameFileAppointment, int* sizeListAppointment, appointment*& listAppointment);
