@@ -6,7 +6,7 @@
 void readPacients(string nameFilePacient, int* sizeListPacient, pacient *& listPacient) //leo todos los pacientes (menos los que fallecieron)
 {
 	fstream filePacient;
-	filePacient.open(nameFile, ios::in);
+	filePacient.open(nameFilePacient, ios::in);
 	if (!(filePacient.is_open()))
 		return;
 	string dummy;
@@ -43,8 +43,25 @@ void addPacient(int* sizeListPacient, pacient*& listPacient, pacient aux) //esta
 	return;
 }
 
+void readAppointment(string nameFileAppointment, int *sizeListAppointment, appointment *& listAppointment)
+{
+	fstream fileAppointment;
+	fileAppointment.open(nameFileAppointment, ios::in);
+	if (!(fileAppointment.is_open()))
+		return;
+	string dummy;
+	appointment aux;
+	while (fileAppointment) {
+		fileAppointment >> aux.dniPacient >> dummy >> aux.dateRequest >> dummy >> aux.dateAppointment >> dummy >>
+			aux.asistance >> dummy >> aux.idDoctor;
+		addAppointment()
+	}
+	fileAppointment.close;
+	return
 
-void readAppointment(string nameFileAppointment, int* sizeListAppointment, appointment *& listAppointment) //ver
+}
+
+void addAppointment(int* sizeListAppointment, appointment *& listAppointment, appointment aux) //ver
 {
 	*sizeListAppointment = *sizeListAppointment + 1;
 	int i = 0;
@@ -54,6 +71,7 @@ void readAppointment(string nameFileAppointment, int* sizeListAppointment, appoi
 		listAuxA[i] = listAppointment[i];
 		i++;
 	}
+	listAuxA[i] = aux;
 	delete[]listAppointment;
 	listAppointment = listAuxA;
 	return;
@@ -75,14 +93,13 @@ time_t lastAppointment(unsigned int dniAux, int* sizeListAppointment, appointmen
 			 
 		if (listAppointment[i].dniPacient == dniAux)
 		{
-			dateaux = pasarFecha(listAppointment[i].dateAppointment); //me paso la fecha a time_t para comparar
+			dateaux = convertDate(listAppointment[i].dateAppointment); //me paso la fecha a time_t para comparar
 			x = difftime(dateaux, lastDateT); //comparo las dos fechas
 											
 			// prueba:    t2=2022, t1= 2003, difftime(t2,t1) = 599616000,  t2-t1.
-			if (x > 0) //si x es negativo, date1 fue despues que lastDateT
+			if (x > 0) //si x es positivo, date1 fue despues que lastDateT
 				lastDateT = dateaux;
 		}
 		return lastDateT;
 	}
-
 }
