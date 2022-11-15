@@ -5,6 +5,8 @@
 
 void readPacients(string nameFilePacient, int* sizeListPacient, pacient *& listPacient) //leo todos los pacientes (menos los que fallecieron)
 {
+	if (sizeListPacient == nullptr || listPacient == nullptr)
+		return;
 	fstream filePacient;
 	filePacient.open(nameFilePacient, ios::in);
 	if (!(filePacient.is_open()))
@@ -20,8 +22,10 @@ void readPacients(string nameFilePacient, int* sizeListPacient, pacient *& listP
 		filePacient >> aux.dni >> dummy >> aux.namePacient >> dummy >> aux.lastNAmePacient >> dummy
 			>> aux.sex >> dummy >> aux.dateBirth >> dummy >> aux.state >> dummy >> aux.idInsurance;
 		keep = keepingUpWithThePacients(aux); //función que se fija si el paciente es recuperable --> ultima consulta hace menos de 10 años
-		if (keep) //si no esta muerto lo paso a la funcion y lo agrego a la lista
-			addPacient(sizeList, listPacient, aux);
+		if (keep) //si me devuelve un true es xq se lo tengo q pasar a la secretaría, si me devuelve un false es irrecuperable
+			addPacient(sizeListPacient, listPacient, aux);//funcion de agregar paciente a lista de posibles recuperables
+		else
+			//funcion de agregar paciente a lista de irrecuperable
 	}
 	filePacient.close;
 	return;
@@ -30,6 +34,8 @@ void readPacients(string nameFilePacient, int* sizeListPacient, pacient *& listP
 
 void addPacient(int* sizeListPacient, pacient*& listPacient, pacient aux) //esta funcion va a ir agregando los pacientes q recibe a la lista de pacientes
 {
+	if (sizeListPacient == nullptr || listPacient == nullptr)
+		return;
 	*sizeListPacient = *sizeListPacient + 1; //agrego un tamaño a la lista
 	int i = 0;
 	pacient* listAuxP = new pacient[*sizeListPacient];
@@ -46,6 +52,8 @@ void addPacient(int* sizeListPacient, pacient*& listPacient, pacient aux) //esta
 
 void readAppointment(string nameFileAppointment, int *sizeListAppointment, appointment *& listAppointment)
 {
+	if (sizeListAppointment == nullptr || listAppointment == nullptr)
+		return;
 	fstream fileAppointment;
 	fileAppointment.open(nameFileAppointment, ios::in);
 	if (!(fileAppointment.is_open()))
@@ -64,6 +72,8 @@ void readAppointment(string nameFileAppointment, int *sizeListAppointment, appoi
 
 void addAppointment(int* sizeListAppointment, appointment *& listAppointment, appointment aux) //ver
 {
+	if (sizeListAppointment == nullptr || listAppointment == nullptr)
+		return;
 	*sizeListAppointment = *sizeListAppointment + 1;
 	int i = 0;
 	appointment* listAuxA = new appointment[*sizeListAppointment];
@@ -82,6 +92,8 @@ void addAppointment(int* sizeListAppointment, appointment *& listAppointment, ap
 time_t lastAppointment(unsigned int dniAux, int sizeListAppointment, appointment* listAppointment, bool	*went) //funcion q te devuelve la ultima fecha de consulta de un paciente recibido por dni
 {
 	time_t dateaux, lastDateT;
+	if (listAppointment == nullptr)
+		return 0;
 	string lastDateString;
 	long int x = 0;
 	bool first = false;
