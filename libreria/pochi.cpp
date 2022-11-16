@@ -60,16 +60,16 @@ bool insuranceList(string nameFilePacient, string** list, int* sizeList) //gener
 	char coma;
 	pacient aux;
 	filePacient >> dummy >> coma >> dummy >> coma >> dummy >> coma >> dummy >> coma >> dummy >> coma >> dummy >> coma >> dummy; // leo la primera linea --> encabezados
-
-	
+	bool alreadythere;
+	int i;
 
 	while (filePacient)
 	{
 		filePacient >> aux.dni >> coma >> aux.namePacient >> coma >> aux.lastNAmePacient >> coma >> aux.sex >> coma >> aux.dateBirth >> coma >> aux.state >> coma >> aux.idInsurance;
 		alreadythere = false;
-		for (int i = 0; i < *sizelist; i++)
+		for ( i = 0; i < *sizeList; i++)
 		{
-			if (**list[i] == aux.idInsurance) //ya lo tenía en la lista --> no lo agrego
+			if (*list[i] == aux.idInsurance) //ya lo tenía en la lista --> no lo agrego
 			{
 				break;//para no seguir comparando si ya lo encontré
 			}
@@ -80,7 +80,7 @@ bool insuranceList(string nameFilePacient, string** list, int* sizeList) //gener
 			newList[*sizeList] = aux.idInsurance; //redimensiono el array para agregar las obras sociales distintas
 		}
 	}
-	filePacient.close;
+	filePacient.close();
 	*sizeList=*sizeList+1;
 	delete* list;
 	*list = newList;
@@ -92,11 +92,12 @@ void generateApp(appointment** list, int* size, long unsigned int DNI, int sizeL
 	srand(time(NULL));
 	//HOY EN TRES VARIABLES
 	time_t current = time(NULL);
-	tm today = localtime(current);
-	string dateReq = to_string(today.tm_mday) + "/" + to_string(today.tm_mon) + "/" + to_string(today.tm_mday);
-	//FECHA CONSULTA EN DOS VARIABLES
+	tm *today = localtime(&current);
+	string dateReq = to_string(*today.tm_mday) + "/" + to_string(*today.tm_mon) + "/" + to_string(*today.tm_mday);
+	//FECHA CONSULTA EN TRES VARIABLES
 	tm dateNewApp;
 	time_t compareNewApp;//la voy a usar para comparar con la fecha actual y asegurarme de que el día que me genera no haya pasado
+	string finalDate;
 
 	bool again;
 
@@ -104,7 +105,7 @@ void generateApp(appointment** list, int* size, long unsigned int DNI, int sizeL
 	{
 		again = false;
 		//genero un año (este año o el año que viene)
-		dateNewApp.tm_year = rand() % 3+today.tm_year-1900 ;  //le resto 1900 para convertirlo a time_t, después los vuelvo a sumar
+		dateNewApp.tm_year = rand() % 3+*today.tm_year-1900 ;  //le resto 1900 para convertirlo a time_t, después los vuelvo a sumar
 		dateNewApp.tm_mon = rand() % 12; //lo haría +1 pero para pasarlo a time_t le tengo que restar uno entonces no hago nada
 		if (dateNewApp.tm_mon == 2)
 		{
@@ -118,7 +119,7 @@ void generateApp(appointment** list, int* size, long unsigned int DNI, int sizeL
 			else
 				dateNewApp.tm_mday = rand() % 31+1;
 		// me aseguro que todavía no haya pasado la fecha
-		compareNewApp = mktime(dateNewApp);
+		compareNewApp = mktime(&dateNewApp);
 		long int fromNow = difftime(compareNewApp, current);
 		
 		if (fromNow <= 0) //la fecha ya pasó
@@ -130,11 +131,11 @@ void generateApp(appointment** list, int* size, long unsigned int DNI, int sizeL
 			dateNewApp.tm_mon = dateNewApp.tm_mon + 1;
 			int cont = 0;
 			 		
-			string finalDate = to_string(dateNewApp.tm_mday) + "/" + to_string(dateNewApp.tm_mon) + "/" + to_string(dateNewApp.tm_year);//las uno y las convierto en un string
+			finalDate = to_string(dateNewApp.tm_mday) + "/" + to_string(dateNewApp.tm_mon) + "/" + to_string(dateNewApp.tm_year);//las uno y las convierto en un string
 
 			for (int i = 0; i < *size; i++)
 			{
-				if (**list[i].dateAppointment == finalDate)
+				if (*list[i].dateAppointment == finalDate)
 				{
 					cont++;
 				}
@@ -162,7 +163,8 @@ void generateApp(appointment** list, int* size, long unsigned int DNI, int sizeL
 	newApp.idDoctor = appDr.idDoctor;
 	
 	appointment* newList = new appointment[*size + 1];
-	for (int i = 0; i < *size; i++)
+	int i;
+	for (i = 0; i < *size; i++)
 	{
 		newList[i] = *list[i];
 	}
