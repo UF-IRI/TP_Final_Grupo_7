@@ -88,35 +88,26 @@ bool insuranceList(string nameFilePacient, string** list, int* sizeList) //gener
 }
 
 
-bool addSecetaryList(int* sizeList, secretaryList aux, secretaryList** listSec)
+void addSecetaryList(int* sizeList, secretaryList aux, secretaryList** listSec)
 {
 	if (sizeList == nullptr || listSec == nullptr || *listSec == nullptr)
-		return false;
-	
-	secretaryList* newlist = new secretaryList[*sizeList + 1];
-}
-
-/*
-void addPacientUnrecoverable(int* sizeListPacientUnrecoverable, pacient*& listPacientUnrecoverable, pacient aux) //esta funcion va a ir agregando los pacientes q recibe a la lista de pacientes irrecuperables
-{
-	if (sizeListPacientUnrecoverable == nullptr || listPacientUnrecoverable == nullptr)
 		return;
-	*sizeListPacientUnrecoverable = *sizeListPacientUnrecoverable + 1; //agrego un tamaño a la lista
-	int i = 0;
-	pacient* listAuxPU = new pacient[*sizeListPacientUnrecoverable];
-	while (i < *sizeListPacientUnrecoverable - 1)
+	
+	secretaryList* newList = new secretaryList[*sizeList + 1];
+
+	int i;
+	for (i = 0; i < *sizeList; i++)
 	{
-		listAuxPU[i] = listPacientUnrecoverable[i];
-		i++;
+		newList[i] = *listSec[i];
 	}
-	listAuxPU[i] = aux;
-	delete[]listPacientUnrecoverable;
-	listPacientUnrecoverable = listAuxP;
-	return;*/
+	newList[i] = aux;
 
+	delete[] * listSec;
+	*listSec = newList;
+	*sizeList = *sizeList + 1;
+	return;
 
-
-
+}
 
 void generateApp(appointment** list, int* size, long unsigned int DNI, int sizeListAppointment, appointment* listAppointment)
 {

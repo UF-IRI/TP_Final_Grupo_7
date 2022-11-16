@@ -82,7 +82,7 @@ int keepingUpWithThePacients(pacient aux, int sizeListAppointment, appointment *
 bool insuranceList(string nameFilePacient, string** list, int*sizeList); //genera array de obras sociales
 void generateApp(appointment** list, int* size, long unsigned int DNI, int sizeListAppointment, appointment* listAppointment); //función que crea una consulta random y la agrega a un array de consultas para la secretaría
 //AGOS FIJATE QUE CAMBIE LOS PARAMETROOOOOOOOOOS
-bool addSecetaryList(int* sizeList, secretaryList aux, secretaryList** listSec);
+void addSecetaryList(int* sizeList, secretaryList aux, secretaryList** listSec);
 //AGREGAR LO DEL MÉDICO A GENERATEAPP
 
 
