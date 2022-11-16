@@ -3,17 +3,18 @@
 
 //supongo que ya se creo una lista de pacientes con tamaño cero
 
-void readPacients(string nameFilePacient, int* sizeListPacient, pacient *& listPacient) //leo todos los pacientes (menos los que fallecieron)
+void readPacients(string nameFilePacient, int* sizeListPacientRecoverable, pacient *& listPacientRecoverable,
+	int * sizeListPacientUnrecoverable, pacient *& listPacientUnrecoverable) //leo todos los pacientes (menos los que fallecieron)
 {
-	if (sizeListPacient == nullptr || listPacient == nullptr)
+	if (sizeListPacientRecoverable == nullptr || listPacientRecoverable == nullptr || sizeListPacientUnrecoverable == nullptr || listPacientUnrecoverable == nullptr)
 		return;
 	fstream filePacient;
 	filePacient.open(nameFilePacient, ios::in);
 	if (!(filePacient.is_open()))
 		return;
+
 	string dummy;
 	bool keep;
-
 	dummy = getline(cin, filePacient); //leo la primera linea del csv (texto inutil), habria q ver si funciona xq me da miedo el getline
 	pacient aux;
 
@@ -25,28 +26,28 @@ void readPacients(string nameFilePacient, int* sizeListPacient, pacient *& listP
 		if (keep) //si me devuelve un true es xq se lo tengo q pasar a la secretaría, si me devuelve un false es irrecuperable
 			addPacient(sizeListPacient, listPacient, aux);//funcion de agregar paciente a lista de posibles recuperables
 		else
-			//funcion de agregar paciente a lista de irrecuperable
+			addPacientUnrecoverable(sizeListPacientUnrecoverable, listPacientUnrecoverable, aux); //funcion de agregar paciente a la lista de irrecuperables
 	}
 	filePacient.close;
 	return;
 }
 
 
-void addPacient(int* sizeListPacient, pacient*& listPacient, pacient aux) //esta funcion va a ir agregando los pacientes q recibe a la lista de pacientes
+void addPacientUnrecoverable(int* sizeListPacientUnrecoverable, pacient*& listPacientUnrecoverable, pacient aux) //esta funcion va a ir agregando los pacientes q recibe a la lista de pacientes
 {
-	if (sizeListPacient == nullptr || listPacient == nullptr)
+	if (sizeListPacientUnrecoverable == nullptr || listPacientUnrecoverable == nullptr)
 		return;
-	*sizeListPacient = *sizeListPacient + 1; //agrego un tamaño a la lista
+	*sizeListPacientUnrecoverable = *sizeListPacientUnrecoverable + 1; //agrego un tamaño a la lista
 	int i = 0;
-	pacient* listAuxP = new pacient[*sizeListPacient];
-	while (i < *sizeListPacient - 1)
+	pacient* listAuxP = new pacient[*sizeListPacientUnrecoverable];
+	while (i < *sizeListPacientUnrecoverable - 1)
 	{
-		listAux[i] = listPacient[i];
+		listAux[i] = listPacientUnrecoverable[i];
 		i++;
 	}
 	listAux[i] = aux;
-	delete[]listPacient;
-	listPacient = listAuxP;
+	delete[]listPacientUnrecoverable;
+	listPacientUnrecoverable = listAuxP;
 	return;
 }
 
@@ -122,6 +123,23 @@ time_t lastAppointment(unsigned int dniAux, int sizeListAppointment, appointment
 			latDateT = 0;
 	}
 	return lastDateT;
-
 }
 
+
+void createFileUnrecoverable(string nameFileUnrecoverable, int sizeListPacientUnrecoverable, pacient* listPacientUnrecoverable)
+{
+	fstream fileUnrecoverable;
+	if (listPacientUnrecoverable == nullptr || !(fileUnrecoverable.is_open()))
+		return;
+	string coma;
+	fileUnrecoverable << "NamePacient" << "," << "LastNamePacient" << "," << "DNI" << "," << "State" << endl;
+	int i = 0;
+	while (fileUnrecoverable)
+	{
+		fileUnrecoverable << listPacientUnrecoverable[i].namePacient << "," << listPacientUnrecoverable[i].lastNAmePacient
+			<< "," << listPacientUnrecoverable[i].dni << "," << listPacientUnrecoverable[i].state << endl;
+		i++;
+	}
+	fileUnrecoverable.close();
+	return;
+}
