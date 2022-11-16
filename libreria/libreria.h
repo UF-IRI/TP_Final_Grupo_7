@@ -66,11 +66,12 @@ time_t convertDate(string dato);
 void newFile(string SecretaryFileName, pacient*& listPacient, int size); //recibir un array de secretaria
 void secretary(string SecretaryFileName, int* sizeFile, string MedicalInsuranceFile); //corregir
 //LOREN
-void readPacients(string nameFilePacient, int* sizeListPacient, pacient*& listPacient);
-void addPacient(int* sizeListPacient, pacient*& listPacient, pacient aux);
+void readPacients(string nameFilePacient, int* sizeListPacientUnrecoverable, pacient*& listPacientUnrecoverable, int sizeListAppointment, appointment* listAppointment);
+void addPacient(int* sizeListPacientUnrecoverable, pacient*& listPacientUnrecoverable, pacient aux);
 void readAppointment(string nameFileAppointment, int* sizeListAppointment, appointment*& listAppointment);
-time_t lastAppointment(unsigned int dniAux, int sizeListAppointment, appointment* listAppointment, bool *went);
+time_t lastAppointment(unsigned int dniAux, int sizeListAppointment, appointment* listAppointment, appointment* lastApp);
 void addAppointment(int* sizeListAppointment, appointment*& listAppointment, appointment aux);
+void createFileUnrecoverable(string nameFileUnrecoverable, int sizeListPacientUnrecoverable, pacient* listPacientUnrecoverable);
 //ALMA
 void findContact(string nameFileContacts, contact* aux, long unsigned int DNI);
 secretaryList convertToSecretary(pacient aux, string nameFileAppointment, string nameFileContacts); //recibe un paciente y carga los datos 
@@ -78,5 +79,5 @@ secretaryList convertToSecretary(pacient aux, string nameFileAppointment, string
 																	//en el arch de consultas
 //POCHI
 int keepingUpWithThePacients(pacient aux, int sizeListAppointment, appointment *listAppointment);
-bool insuranceList(string nameFilePacient, string** list); //genera array de obras sociales
+bool insuranceList(string nameFilePacient, string** list, int*sizeList); //genera array de obras sociales
 appointment generateApp(appointment** list, int* size, long unsigned int DNI); //generar una consulta random y agregarla a la lista

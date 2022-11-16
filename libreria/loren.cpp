@@ -85,7 +85,7 @@ void addAppointment(int* sizeListAppointment, appointment *& listAppointment, ap
 }
 
 
-time_t lastAppointment(unsigned int dniAux, int sizeListAppointment, appointment* listAppointment, bool	*went) //funcion q te devuelve la ultima fecha de consulta de un paciente recibido por dni
+time_t lastAppointment(unsigned int dniAux, int sizeListAppointment, appointment* listAppointment, appointment* lastApp) //funcion q te devuelve la ultima fecha de consulta de un paciente recibido por dni
 {
 	time_t dateaux, lastDateT = 0;
 	if (listAppointment == nullptr)
@@ -99,7 +99,7 @@ time_t lastAppointment(unsigned int dniAux, int sizeListAppointment, appointment
 			lastDateString = listAppointment[i].dateAppointment;	//inicializo la ultima fecha en la primera q encuentre de ese paciente
 			lastDateT = convertDate(lastDateString); //me paso la ultima fecha a time_t para comparar
 			first = true;
-			*went = listAppointment[i].asistance;
+			*lastApp= listAppointment[i];
 		}
 			 
 		if (listAppointment[i].dniPacient == dniAux)
@@ -111,7 +111,7 @@ time_t lastAppointment(unsigned int dniAux, int sizeListAppointment, appointment
 			if (x > 0) //si x es positivo, dateaux fue despues que lastDateT
 			{
 				lastDateT = dateaux;
-				*went = listAppointment[i].asistance;
+				*lastApp = listAppointment[i];
 			}
 		}
 	}

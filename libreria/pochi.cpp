@@ -4,11 +4,13 @@
 int keepingUpWithThePacients(pacient aux, int sizeListAppointment, appointment* listAppointment) 
 {
 	int category=-1;
+	appointment app;
 	bool went;
 	if (aux.state != "internado" && aux.state != "Internado" && aux.state != "fallecido" && aux.state != "Fallecido")
 	{
 		time_t current = time(0);
-		time_t lastAp = lastAppointment(aux.dni, sizeListAppointment, listAppointment, &went);
+		time_t lastAp = lastAppointment(aux.dni, sizeListAppointment, listAppointment, &app);
+		went = app.asistance;
 		double timeSinceLastApp = difftime(current, lastAp);
 		if (timeSinceLastApp < 315576000)//menos de 10 años en segundos
 		{
