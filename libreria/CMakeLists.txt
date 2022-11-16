@@ -1,6 +1,6 @@
 ## >>>>>>>>>>>>>>>
 ## >>>>>>>>>>>>>>>
-add_library(libreria dummy.cpp)
+add_library(libreria agos.cpp almi.cpp libreria.h loren.cpp pochi.cpp )
 ## <<<<<<<<<<<<<<<
 ## <<<<<<<<<<<<<<<
 
