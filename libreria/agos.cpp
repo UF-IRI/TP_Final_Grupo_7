@@ -66,14 +66,83 @@ void newFile(string SecretaryFileName, secretaryList*& listPacient, int size)
 	fp << "DNI, Nombre, Apellido, Telefono, ObraSocial, ID-Medico, Estado" << endl;
 	for (int i = 0; i < size; i++)
 	{
-		fp << listPacient[i].dni << " , " << listPacient[i].namePacient << " , " << listPacient[i].lastNamePacient << " , " << listPacient[i].cellphoneNumber<<" , "<<listPacient[i].medicalInsurance << endl;
+		fp << listPacient[i].dni << " , " << listPacient[i].namePacient << " , " << listPacient[i].lastNamePacient << " , " << listPacient[i].cellphoneNumber<<" , "<<listPacient[i].medicalInsurance<<" , "<<listPacient[i].answer<< endl;
+	}
+	fp.close();
+}
+
+
+
+void secretary(string SecretaryFileName, int *sizeFile)
+{
+	srand(NULL);
+	int comeBack, change, answered;
+	fstream fp;
+
+	fp.open(SecretaryFileName, ios::in); //abro archivo de la secretaria para leer
+	if (!(fp.open()))
+		return;
+
+	char comma = 0;
+	string dummy;
+
+	secretaryList* finalList = new secretaryList[*sizeFile]; //nueva lista con el tamanio de la que me pasan en el archivo
+
+	fp >> dummy >> comma >> dummy >> comma >> dummy >> comma >> dummy >> comma >> dummy >> comma >> dummy; //leo el encabezado
+
+	int i = 0;
+	while (fp)//cargo la lista con los datos
+	{
+		fp >> finalList[i].dni >> comma >> finalList[i].namePacient >> comma >> finalList[i].lastNamePacient >> comma >> finalList[i].cellphoneNumber >> comma >> finalList[i].medicalInsurance >> comma >> finalList[i].idDoctor >> comma >> finalList[i].answer; //leo los datos en el array
+		i++;
 	}
 
-	fp.close();
+	string contactFile = "C:\\Users\\agosn\\source\\repos\\TP_Final_Grupo_7\\data_files\\input\\IRI_Consultas.csv";
+	contact contactPacient;
+	string* insuranceList;
+
+	for (int k = 0; k < *sizeFile; k++)
+	{
+		findContact(contactFile, &contactPacient, finalList[k].dni);
+		if (&contactPacient != nullptr) //hago todo siempre y cuando lo haya encontrado
+		{
+			for (int i = 0; i < 10; i++) //llamo como maximo 10 veces cada paciente
+			{
+				answered = rand() % 2; //0: no contesto, 1: contesto
+				if (answered == 1)
+				{
+					comeBack = rand() % 2;//0: no quiere volver, 1: quiere volver
+					if (comeBack == 1)
+					{
+						//nueva consulta
+						change = rand() % 3;//0: no quiere cambiar ningun dato 1:cambio su obra social 2:cambio su medico
+						if (change == 1)
+						{
+							MI = rand() % 6; //numeros del 0 al 5, c/u tiene una obra social asignada
+							finalList[k].medicalInsurance = medicalInsuranceList[MI].nameInsurance;
+						}
+					}
+					else //si no quiere volver lo elimino de la lista de la secretaria
+					{
+						counter++; //cuento cada vez que elimine a alguien de la lista
+						for (int a = k; a < *sizeFile - 1; a++)
+						{
+							finalList[a] = finalList[a + 1];
+						}
+						k--; //le resto uno a k asi vuelvo a fijarme esa posicion
+					}
+					break;
+				}
+			}
+		}
+	}
+
+	//NO TE OLVIDES LOS DELETES
 
 }
 
-void secretary(string SecretaryFileName, int *sizeFile, string MedicalInsuranceFile) //NO LA TERMINE NO TOQUEN NADA
+/*
+void secretary(string SecretaryFileName, int *sizeFile, string MedicalInsuranceFile)
 {
 	srand(NULL);
 
@@ -165,4 +234,5 @@ void secretary(string SecretaryFileName, int *sizeFile, string MedicalInsuranceF
 	delete[] medicalInsuranceList;
 	medicalInsuranceList = NULL;
 }
+*/
 
