@@ -49,7 +49,7 @@ secretaryList convertToSecretary(pacient aux, appointment* listAppointment, int 
 	fstream readcon;
 	bool found2 = false;
 	readcon.open(nameFileContacts, ios::in);
-	if (!(readcon.is_open:open()))
+	if (!(readcon.is_open()))
 	{
 		auxsec.dni = 0;
 	}
