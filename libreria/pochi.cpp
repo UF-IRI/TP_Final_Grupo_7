@@ -87,7 +87,7 @@ bool insuranceList(string nameFilePacient, string** list, int* sizeList) //gener
 	return true;
 }
 
-void generateApp(appointment** list, int* size, long unsigned int DNI)
+void generateApp(appointment** list, int* size, long unsigned int DNI, int sizeListAppointment, appointment* listAppointment, )
 {
 	srand(time(NULL));
 	//HOY EN TRES VARIABLES
@@ -96,7 +96,7 @@ void generateApp(appointment** list, int* size, long unsigned int DNI)
 	string dateReq = to_string(today.tm_mday) + "/" + to_string(today.tm_mon) + "/" + to_string(today.tm_mday);
 	//FECHA CONSULTA EN DOS VARIABLES
 	tm dateNewApp;
-	time_t compareNewApp;
+	time_t compareNewApp;//la voy a usar para comparar con la fecha actual y asegurarme de que el día que me genera no haya pasado
 
 	bool again;
 
@@ -148,14 +148,18 @@ void generateApp(appointment** list, int* size, long unsigned int DNI)
 	} while (again);
 		//ahora ya tengo una fecha que es 1)futura, 2)no está en un mismo dia con mas de 200 consultas
 
+	//BUSCO EL MÉDICO DE LA ÚLTIMA CONSULTA (ASUMO QUE QUIERE REPROGRAMAR UNA CONSULTA PARA LO MISMO QUE LA ÚLRIMA --> MISMO MÉDICO) --> SI EL MÉDICO NO ESTÁ ACTIVO QUE REVIVA <3
+	appointment appDr;
+	time_t dummy = lastAppointment(DNI, sizeListAppointment, listAppointment, &appDr);
+
+
 	// me creo una variable para esta appointment en particular
 	appointment newApp;
 	newApp.asistance = false;//porque todavía no fue
 	newApp.dateAppointment = finalDate;
 	newApp.dateRequest = dateReq;
 	newApp.dniPacient = DNI;
-	//newApp.idDoctor= !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!NECESITO UN MÉDICO!!!!!!!!!!!!esunllamadodeemergenciabeibe!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	newApp.idDoctor = appDr.idDoctor;
 	
 	appointment* newList = new appointment[*size + 1];
 	for (int i = 0; i < *size; i++)
