@@ -66,7 +66,7 @@ time_t convertDate(string dato);
 void newFile(string SecretaryFileName, pacient*& listPacient, int size); //recibir un array de secretaria
 void secretary(string SecretaryFileName, int* sizeFile, string MedicalInsuranceFile); //corregir
 //LOREN
-void readPacients(string nameFilePacient, int* sizeListPacientUnrecoverable, pacient*& listPacientUnrecoverable, int sizeListAppointment, appointment* listAppointment);
+void readPacients(string nameFilePacient, int* sizeListPacientUnrecoverable, pacient*& listPacientUnrecoverable, int sizeListAppointment, appointment* &listAppointment);
 void addPacient(int* sizeListPacientUnrecoverable, pacient*& listPacientUnrecoverable, pacient aux);
 void readAppointment(string nameFileAppointment, int* sizeListAppointment, appointment*& listAppointment);
 time_t lastAppointment(unsigned int dniAux, int sizeListAppointment, appointment* listAppointment, appointment* lastApp);
@@ -77,7 +77,6 @@ void findContact(string nameFileContacts, contact* aux, long unsigned int DNI);
 secretaryList convertToSecretary(pacient aux, string nameFileAppointment, string nameFileContacts); //recibe un paciente y carga los datos 
 																	//en un struct del tipo secretaria y busca el id-medico
 																	//en el arch de consultas
-bool doctorIdList(string nameFileAppointment, string** list, int* sizeList);
 //POCHI
 int keepingUpWithThePacients(pacient aux, int sizeListAppointment, appointment *listAppointment);
 bool insuranceList(string nameFilePacient, string** list, int*sizeList); //genera array de obras sociales

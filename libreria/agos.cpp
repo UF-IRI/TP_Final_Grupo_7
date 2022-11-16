@@ -76,7 +76,7 @@ void newFile(string SecretaryFileName, secretaryList*& listPacient, int size)
 void secretary(string SecretaryFileName, int sizeFile) //falta lo de escribir una nuesva consulta en el array de consultas
 {
 	srand(NULL);
-	int comeBack, change, answered, satisfied, idInsurance, idDoctor;
+	int comeBack, change, answered, idInsurance;
 	fstream fp;
 
 	fp.open(SecretaryFileName, ios::in); //abro archivo de la secretaria para leer
@@ -100,19 +100,14 @@ void secretary(string SecretaryFileName, int sizeFile) //falta lo de escribir un
 	fp.close();
 
 	//QUEDA CON EL PATH DE MI COMPU??
-	string appointmentFile = "C:\\Users\\agosn\\source\\repos\\TP_Final_Grupo_7\\data_files\\input\\IRI_Consultas.csv";
 	string pacientFile = "C:\\Users\\agosn\\source\\repos\\TP_Final_Grupo_7\\data_files\\input\\IRI_Pacientes.csv";
 	string contactFile = "C:\\Users\\agosn\\source\\repos\\TP_Final_Grupo_7\\data_files\\input\\IRI_Consultas.csv";
 	
 	contact contactPacient;
 	int insuranceListSize=0;
-	int doctorIdListSize = 0;
-	string* insuranceList=new string[0];//en la funcion se les asigna una nueva direccion
-	string* doctorIdList = new string[0];
+	string* insuranceList=new string[0];//en la funcion se le asigna una nueva direccion
 	bool medicalInsuranceArray = (pacientFile, &insuranceList, &insuranceListSize);
-	bool doctorIdArray = (appointmentFile, &doctorIdList, &doctorIdListSize);
 
-	satisfied = 0;
 	int a = 0;
 	for (int k = 0; k < sizeFile; k++)
 	{
@@ -130,41 +125,22 @@ void secretary(string SecretaryFileName, int sizeFile) //falta lo de escribir un
 						//nueva consulta!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 						finalList[k].answer = "El paciente ha programado una nueva consulta";
 
-						while (satisfied == 0)
-						//0: no esta satisfecho con los cambios, repito 1:esta satisfecho
+						change = rand() % 3;//0: no quiere cambiar ningun dato 1:cambio su obra social 
+						
+						if (change == 1)
 						{
-							change = rand() % 3;//0: no quiere cambiar ningun dato 1:cambio su obra social 2:cambio su medico
-							switch (change)
+							if (medicalInsuranceArray)
 							{
-							case 0:
-							{
-								satisfied = 1;
-								break;
-							}
-							case 1:
-							{
-								if (medicalInsuranceArray)
+								string aux=finalList[k].medicalInsurance; //para que no sea la misma q tenia antes
+								do
 								{
 									idInsurance = rand() % insuranceListSize;
 									finalList[k].medicalInsurance = insuranceList[idInsurance];
-								}
-								satisfied = rand() % 2;
-								break;
-							}
-							case 2:
-							{
-								if (doctorIdArray)
-								{
-									idDoctor = rand() % doctorIdListSize;
-									finalList[k].idDoctor = doctorIdList[idDoctor];
-								}
-								satisfied = rand() % 2;
-								break;
-							}
-							default:break;
-							}
 
+								} while (aux == insuranceList[idInsurance]);
+							}
 						}
+
 					}
 					else //no quiere volver
 					{
@@ -193,7 +169,5 @@ void secretary(string SecretaryFileName, int sizeFile) //falta lo de escribir un
 	finalList = NULL;
 	delete[] insuranceList;
 	insuranceList = NULL;
-	delete[] doctorIdList;
-	doctorIdList = NULL;
 	
 }

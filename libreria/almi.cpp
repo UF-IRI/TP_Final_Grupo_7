@@ -103,42 +103,5 @@ secretaryList convertToSecretary(pacient aux, string nameFileAppointment, string
 
 }
 
-bool doctorIdList(string nameFileAppointment, string** list, int* sizeList)
-{
-	fstream readapp;
 
-	readapp.open(nameFileAppointment, ios::in);
-	if (!(readapp.is_open())) return false;
-
-	char coma;
-	string dummy;
-
-	readapp >> dummy >> coma >> dummy >> coma >> dummy >> coma >> dummy >> coma >> dummy;//header
-
-	appointment aux;
-
-	while (readapp)
-	{
-		readapp >> aux.dniPacient >> coma >> aux.dateAppointment >> coma >> aux.dateAppointment >> coma >> aux.asistance >> coma >> aux.idDoctor;
-		for (int i = 0; i < *sizeList:i++)
-		{
-			if (**list[i] == aux.idDoctor)
-			{
-				break;
-			}
-		}
-		if (i == *sizeList)
-		{
-			string* newdoc = new string[*sizeList + 1];
-			newdoc[*sizeList] = aux.idDoctor;
-		}
-	}
-	readapp.close();
-	*sizeList = *sizeList + 1;
-	delete* list;
-	*list = newdoc;
-	return true;
-}
-
-}
 
