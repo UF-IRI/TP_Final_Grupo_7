@@ -87,7 +87,7 @@ bool insuranceList(string nameFilePacient, string** list, int* sizeList) //gener
 	return true;
 }
 
-void generateApp(appointment** list, int* size, long unsigned int DNI, int sizeListAppointment, appointment* listAppointment, )
+void generateApp(appointment** list, int* size, long unsigned int DNI, int sizeListAppointment, appointment* listAppointment)
 {
 	srand(time(NULL));
 	//HOY EN TRES VARIABLES
