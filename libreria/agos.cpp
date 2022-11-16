@@ -73,10 +73,10 @@ void newFile(string SecretaryFileName, secretaryList*& listPacient, int size)
 
 
 
-void secretary(string SecretaryFileName, int *sizeFile)
+void secretary(string SecretaryFileName, int sizeFile) //falta lo de escribir una nuesva consulta en el array de consultas
 {
 	srand(NULL);
-	int comeBack, change, answered, satisfied, idInsurance;
+	int comeBack, change, answered, satisfied, idInsurance, idDoctor;
 	fstream fp;
 
 	fp.open(SecretaryFileName, ios::in); //abro archivo de la secretaria para leer
@@ -86,7 +86,7 @@ void secretary(string SecretaryFileName, int *sizeFile)
 	char comma = 0;
 	string dummy;
 
-	secretaryList* finalList = new secretaryList[*sizeFile]; //nueva lista con el tamanio de la que me pasan en el archivo
+	secretaryList* finalList = new secretaryList[sizeFile]; //nueva lista con el tamanio de la que me pasan en el archivo
 
 	fp >> dummy >> comma >> dummy >> comma >> dummy >> comma >> dummy >> comma >> dummy >> comma >> dummy; //leo el encabezado
 
@@ -97,23 +97,29 @@ void secretary(string SecretaryFileName, int *sizeFile)
 		i++;
 	}
 
+	fp.close();
+
+	//QUEDA CON EL PATH DE MI COMPU??
+	string appointmentFile = "C:\\Users\\agosn\\source\\repos\\TP_Final_Grupo_7\\data_files\\input\\IRI_Consultas.csv";
 	string pacientFile = "C:\\Users\\agosn\\source\\repos\\TP_Final_Grupo_7\\data_files\\input\\IRI_Pacientes.csv";
 	string contactFile = "C:\\Users\\agosn\\source\\repos\\TP_Final_Grupo_7\\data_files\\input\\IRI_Consultas.csv";
 	
 	contact contactPacient;
 	int insuranceListSize=0;
-	string* insuranceList=new string[0];//en la funcion se le asigna una nueva direccion
-
-	bool medicalInsuranceArray = (pacientFile, &insurancelist, &insuranceListSize);
+	int doctorIdListSize = 0;
+	string* insuranceList=new string[0];//en la funcion se les asigna una nueva direccion
+	string* doctorIdList = new string[0];
+	bool medicalInsuranceArray = (pacientFile, &insuranceList, &insuranceListSize);
+	bool doctorIdArray = (appointmentFile, &doctorIdList, &doctorIdListSize);
 
 	satisfied = 0;
-
-	for (int k = 0; k < *sizeFile; k++)
+	int a = 0;
+	for (int k = 0; k < sizeFile; k++)
 	{
 		findContact(contactFile, &contactPacient, finalList[k].dni);
 		if (&contactPacient != nullptr) //hago todo siempre y cuando lo haya encontrado
 		{
-			for (int i = 0; i < 10; i++) //llamo como maximo 10 veces cada paciente
+			for (a = 0; a < 10; a++) //llamo como maximo 10 veces cada paciente
 			{
 				answered = rand() % 2; //0: no contesto, 1: contesto
 				if (answered == 1)
@@ -147,7 +153,11 @@ void secretary(string SecretaryFileName, int *sizeFile)
 							}
 							case 2:
 							{
-								//necesito mi funcion de id-medico
+								if (doctorIdArray)
+								{
+									idDoctor = rand() % doctorIdListSize;
+									finalList[k].idDoctor = doctorIdList[idDoctor];
+								}
 								satisfied = rand() % 2;
 								break;
 							}
@@ -163,9 +173,27 @@ void secretary(string SecretaryFileName, int *sizeFile)
 					break;
 				}
 			}
+			if (a == 10) //si recorri el for entero entonces no contesto
+				finalList[k].answer = "El paciente no pudo ser contactado";
 		}
 	}
 
-	//NO TE OLVIDES LOS DELETES
+	fp.open(SecretaryFileName, ios::out); //abro archivo de la secretaria para sobreescribir
+	if (!(fp.open()))
+		return;
 
+	fp << "DNI, Nombre, Apellido, Telefono, ObraSocial, ID-Medico, Estado" << endl;
+	for (int i = 0; i < sizeFile; i++)
+	{
+		fp << finalList[i].dni << " , " << finalList[i].namePacient << " , " << finalList[i].lastNamePacient << " , " << finalList[i].cellphoneNumber << " , " << finalList[i].medicalInsurance << " , " << finalList[i].answer << endl;
+	}
+	fp.close();
+
+	delete[] finalList;
+	finalList = NULL;
+	delete[] insuranceList;
+	insuranceList = NULL;
+	delete[] doctorIdList;
+	doctorIdList = NULL;
+	
 }
