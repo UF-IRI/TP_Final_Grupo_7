@@ -4,35 +4,35 @@
 void readPacients(string nameFilePacient, int * sizeListPacientUnrecoverable, pacient *& listPacientUnrecoverable, int sizeListAppointment, appointment* listAppointment, string nameFileContact) //leo todos los pacientes (menos los que fallecieron)
 {
 	fstream filePacient;
-	filePacient.open(nameFilePacient, ios::in);
+	filePacient.open(nameFilePacient, ios::in); //abro el archivo de paciente para lectura
 	if (sizeListPacientUnrecoverable == nullptr || listPacientUnrecoverable == nullptr || !(filePacient.is_open()))
 		return;
 	string dummy;
-	int keep;
+	int group;
 	filePacient >> dummy >> dummy >> dummy >> dummy >> dummy >> dummy >> dummy >> dummy >> dummy >> dummy >> dummy
 		>> dummy >> dummy;//leo la primera linea del csv (texto inutil)
-	pacient aux;
 
+	pacient aux;
 	int sizeSec=0;
-	secretaryList* listSec = new secretaryList[0];
+	secretaryList* listSec = new secretaryList[sizeSec]; //me creo una lista dinamica que es con la que luego haremos el archivo de secretaria
 	secretaryList auxSec;
 
-	while (filePacient) {
+	while (filePacient) { //recorro el archivo de pacientes
 		filePacient >> aux.dni >> dummy >> aux.namePacient >> dummy >> aux.lastNAmePacient >> dummy
 			>> aux.sex >> dummy >> aux.dateBirth >> dummy >> aux.state >> dummy >> aux.idInsurance;
-		keep = keepingUpWithThePacients(aux, sizeListAppointment, listAppointment); //función que se fija si el paciente es recuperable --> ultima consulta hace menos de 10 años
-		if (keep == 1) // 1: recuperable, 2: irrecuperable, 3: no me importa
+		group = keepingUpWithThePacients(aux, sizeListAppointment, listAppointment); //función que se fija el grupo al que pertenece el paciente
+		if (group == 1) // 1: recuperable (lo paso a secretaria)
 		{
-			auxSec = convertToSecretary(aux, listAppointment, sizeListAppointment, nameFileContact);
+			auxSec = convertToSecretary(aux, listAppointment, sizeListAppointment, nameFileContact); //
 			if (auxSec.dni != 0)
 			{
-				////////////////////////////////////////////////////////////////AGREGAR A SECRETARY
+				addSecetaryList(&sizeSec, auxSec, &listSec);
 			}
 		}	
-		else if(keep == 2)
-			addPacientUnrecoverable(sizeListPacientUnrecoverable, &listPacientUnrecoverable, aux); //funcion de agregar paciente a la lista de irrecuperables
+		else if(group == 2) // grupo 2: irrecuperable(lo agrego a la lista de irrecuperables)
+			addPacientUnrecoverable(sizeListPacientUnrecoverable, listPacientUnrecoverable, aux); //funcion de agregar paciente a la lista de irrecuperables
 	}
-	filePacient.close;
+	filePacient.close();
 	return;
 }
 
@@ -51,7 +51,7 @@ void addPacientUnrecoverable(int* sizeListPacientUnrecoverable, pacient*& listPa
 	}
 	listAuxPU[i] = aux;
 	delete[]listPacientUnrecoverable;
-	listPacientUnrecoverable = listAuxP;
+	listPacientUnrecoverable = listAuxPU;
 	return;
 }
 
@@ -69,10 +69,10 @@ void readAppointment(string nameFileAppointment, int *sizeListAppointment, appoi
 	while (fileAppointment) {
 		fileAppointment >> aux.dniPacient >> dummy >> aux.dateRequest >> dummy >> aux.dateAppointment >> dummy >>
 			aux.asistance >> dummy >> aux.idDoctor;
-		addAppointment()
+		addAppointment(sizeListAppointment, listAppointment, aux);
 	}
-	fileAppointment.close;
-	return
+	fileAppointment.close();
+	return;
 
 }
 
