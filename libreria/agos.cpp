@@ -63,10 +63,10 @@ void newFile(string SecretaryFileName, secretaryList*& listPacient, int size)
 	if (!(fp.is_open()))
 		return;
 
-	fp << "DNI, Nombre, Apellido, ObraSocial, ID-Medico, Estado" << endl;
+	fp << "DNI, Nombre, Apellido, Telefono, ObraSocial, ID-Medico, Estado" << endl;
 	for (int i = 0; i < size; i++)
 	{
-		fp << listPacient[i].dni << " , " << listPacient[i].namePacient << " , " << listPacient[i].lastNAmePacient << " , " << listPacient[i].idInsurance << endl;
+		fp << listPacient[i].dni << " , " << listPacient[i].namePacient << " , " << listPacient[i].lastNamePacient << " , " << listPacient[i].cellphoneNumber<<" , "<<listPacient[i].medicalInsurance << endl;
 	}
 
 	fp.close();
