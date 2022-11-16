@@ -1,7 +1,6 @@
 #include <string>
 #include <ctime>
 #include <iostream>
-#include <stringstream>
 #include <fstream>
 
 using namespace std;
@@ -50,10 +49,11 @@ typedef struct pacient {
 }pacient;
 
 typedef struct secretaryList {
-	string name;
-	string lastName;
+	string namePacient;
+	string lastNamePacient;
 	long unsigned int dni;
 	string medicalInsurance;
+	string idDoctor;
 };
 
 
@@ -61,8 +61,8 @@ typedef struct secretaryList {
 //FUNCIONES:
 //AGOS
 time_t convertDate(string dato);
-void newFile(string SecretaryFileName, pacient*& listPacient, int size);
-void secretary(string SecretaryFileName, int* sizeFile, string MedicalInsuranceFile);
+void newFile(string SecretaryFileName, pacient*& listPacient, int size); //recibir un array de secretaria
+void secretary(string SecretaryFileName, int* sizeFile, string MedicalInsuranceFile); //corregir
 //LOREN
 void readPacients(string nameFilePacient, int* sizeListPacient, pacient*& listPacient);
 void addPacient(int* sizeListPacient, pacient*& listPacient, pacient aux);
@@ -71,5 +71,10 @@ time_t lastAppointment(unsigned int dniAux, int sizeListAppointment, appointment
 void addAppointment(int* sizeListAppointment, appointment*& listAppointment, appointment aux);
 //ALMA
 void findContact(string nameFileContacts, contact* aux, long unsigned int DNI);
+secretaryList convertToSecretary(pacient aux, string nameFileAppointment); //recibe un paciente y carga los datos 
+																	//en un struct del tipo secretaria y busca el id-medico
+																	//en el arch de consultas
 //POCHI
-bool keepingUpWithThePacients(pacient aux, int sizeListAppointment, appointment *listAppointment);
+int keepingUpWithThePacients(pacient aux, int sizeListAppointment, appointment *listAppointment);
+bool insuranceList(string nameFilePacient, string** list); //genera array de obras sociales
+appointment generateApp(appointment** list, int* size, long unsigned int DNI); //generar una consulta random y agregarla a la lista

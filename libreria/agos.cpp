@@ -54,7 +54,8 @@ time_t convertDate(string dato)
 	return finalDate;
 }
 
-void newFile(string SecretaryFileName, pacient*& listPacient, int size)
+//nombre apellido telefono id-medico obrasocial estado
+void newFile(string SecretaryFileName, secretaryList*& listPacient, int size)
 {
 	fstream fp;
 
@@ -62,7 +63,7 @@ void newFile(string SecretaryFileName, pacient*& listPacient, int size)
 	if (!(fp.is_open()))
 		return;
 
-	fp << "DNI, Nombre, Apellido, ObraSocial" << endl;
+	fp << "DNI, Nombre, Apellido, ObraSocial, ID-Medico, Estado" << endl;
 	for (int i = 0; i < size; i++)
 	{
 		fp << listPacient[i].dni << " , " << listPacient[i].namePacient << " , " << listPacient[i].lastNAmePacient << " , " << listPacient[i].idInsurance << endl;
@@ -72,7 +73,6 @@ void newFile(string SecretaryFileName, pacient*& listPacient, int size)
 
 }
 
-//REVISAR
 void secretary(string SecretaryFileName, int *sizeFile, string MedicalInsuranceFile) //NO LA TERMINE NO TOQUEN NADA
 {
 	srand(NULL);
@@ -116,6 +116,7 @@ void secretary(string SecretaryFileName, int *sizeFile, string MedicalInsuranceF
 
 	for(int k=0; k<*sizeFile; k++)
 	{
+		//busco el contacto del paciente y si no lo encuentro salgo, funcion buscar
 		for (int i = 0; i < 10; i++) //llamo como maximo 10 veces cada paciente
 		{
 			answered = rand() % 2; //0: no contesto, 1: contesto
