@@ -1,5 +1,7 @@
 #include "iri.cpp"
 #include "libreria.h"
+#include "pochi.cpp"
+//#include "loren.cpp"
 
 int main() {
 
@@ -12,6 +14,6 @@ int main() {
 	int unrecoverableSize = 0;
 	pacient* listPacientUnrecoverable = new pacient[0];
 	string pacientFile = "IRI_Pacientes.csv";
-	readPacients( pacientFile, &unrecoverableSize, listPacientUnrecoverable, appointmentSize, &listAppointment);
+	readPacients( pacientFile, &unrecoverableSize, listPacientUnrecoverable, appointmentSize, listAppointment);
 
 }

@@ -39,17 +39,20 @@ void findContact(string nameFileContacts, contact* aux, long unsigned int DNI)
 	return;
 }
 
-secretaryList convertToSecretary(pacient aux, string nameFileAppointment, string nameFileContacts) //recibe un paciente y carga los datos 
+secretaryList convertToSecretary(pacient aux, appointment* listAppointment, int sizeListAppointment, string nameFileContacts) //recibe un paciente y carga los datos 
 																	//en un struct del tipo secretaria y busca el id-medico
 																	//en el arch de consultas
 {
-	fstream readapp, readcon;
-	bool found = false;
-	bool found2 = false;
-	readapp.open(nameFileAppointment, ios::in);
-	readcon.open(nameFileContacts, ios::in);
-
 	secretaryList auxsec;
+
+
+	fstream readcon;
+	bool found2 = false;
+	readcon.open(nameFileContacts, ios::in);
+	if (!(readcon.is_open:open()))
+	{
+		auxsec.dni = 0;
+	}
 
 	auxsec.dni = aux.dni;
 	auxsec.namePacient = aux.namePacient;
@@ -62,23 +65,12 @@ secretaryList convertToSecretary(pacient aux, string nameFileAppointment, string
 	long unsigned int dniaux = 0;
 	
 	string iddocaux;
-	readapp >> dummy >> coma >> dummy >> coma >> dummy >> coma >> dummy >> coma >> dummy;//header
 
-	while (readapp) //leo el archivo de appointment
-	{
-		readapp >> dniaux >> coma >> dummy >> coma >> dummy >> coma >> dummy >> coma >> iddocaux;
-		if (dniaux == aux.dni)
-		{
-		auxsec.idDoctor = dniaux;
-		found = true;
-		}
-	}readapp.close();
-
-	if (!(found))
-	{
-		auxsec.idDoctor = 0;
-	}
-
+	appointment lastApp;
+	time_t dummy = lastAppointment(aux.dni, sizeListAppointment, listAppointment, &lastApp);
+	
+	auxsec.idDoctor = lastApp.idDoctor;
+	
 	string cellphoneaux;
 	readcon >> dummy >> coma >> dummy >> coma >> dummy >> coma >> dummy >> coma >> dummy;//header
 	while (readcon) //leo el de contactos
@@ -88,6 +80,7 @@ secretaryList convertToSecretary(pacient aux, string nameFileAppointment, string
 		if (dniaux == aux.dni)
 		{
 			auxsec.cellphoneNumber = cellphoneaux;
+			found2 = true;
 		}
 
 	}readcon.close();

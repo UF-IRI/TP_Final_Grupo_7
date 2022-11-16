@@ -80,7 +80,7 @@ void secretary(string SecretaryFileName, int sizeFile) //falta lo de escribir un
 	fstream fp;
 
 	fp.open(SecretaryFileName, ios::in); //abro archivo de la secretaria para leer
-	if (!(fp.open()))
+	if (!(fp.is_open()))
 		return;
 
 	char comma = 0;
@@ -155,7 +155,7 @@ void secretary(string SecretaryFileName, int sizeFile) //falta lo de escribir un
 	}
 
 	fp.open(SecretaryFileName, ios::out); //abro archivo de la secretaria para sobreescribir
-	if (!(fp.open()))
+	if (!(fp.is_open()))
 		return;
 
 	fp << "DNI, Nombre, Apellido, Telefono, ObraSocial, ID-Medico, Estado" << endl;
