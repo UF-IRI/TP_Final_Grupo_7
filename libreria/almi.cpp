@@ -9,6 +9,7 @@ void findContact(string nameFileContacts, contact* aux, long unsigned int DNI)
 	//el bool sigue siendo false al puntero le digo null 
 
 	bool found = false;
+	
 	fstream read;
 	char coma = 0;
 	string dummy;
@@ -36,4 +37,67 @@ void findContact(string nameFileContacts, contact* aux, long unsigned int DNI)
 
 	}
 	return;
+}
+
+secretaryList convertToSecretary(pacient aux, string nameFileAppointment, string nameFileContacts) //recibe un paciente y carga los datos 
+																	//en un struct del tipo secretaria y busca el id-medico
+																	//en el arch de consultas
+{
+	fstream readapp, readcon;
+	bool found = false;
+	bool found2 = false;
+	readapp.open(nameFileAppointment, ios::in);
+	readcon.open(nameFileContacts, ios::in);
+
+	secretaryList auxsec;
+
+	auxsec.dni = aux.dni;
+	auxsec.namePacient = aux.namePacient;
+	auxsec.lastNamePacient = aux.lastNAmePacient;
+	auxsec.medicalInsurance = aux.idInsurance;
+
+	char coma;
+	string dummy;
+
+	long unsigned int dniaux = 0;
+	
+	int iddocaux = 0;
+
+	while (readapp) //leo el archivo de appointment
+	{
+		readapp >> dniaux >> coma >> dummy >> coma >> dummy >> coma >> dummy >> coma >> iddocaux;
+		if (dniaux == aux.dni)
+		{
+		auxsec.idDoctor = dniaux;
+		found = true;
+		}
+	}readapp.close();
+
+	if (!(found))
+	{
+		auxsec.idDoctor = 0;
+	}
+
+	string cellphoneaux;
+
+	while (readcon) //leo el de contactos
+	{
+		readcon >> dniaux >> coma >> cellphoneaux >> coma >> dummy >> coma >> dummy >> coma >> dummy;
+		
+		if (dniaux == aux.dni)
+		{
+			auxsec.cellphoneNumber = cellphoneaux;
+		}
+
+	}readcon.close();
+
+	if (!(found2))
+	{
+		auxsec.cellphoneNumber = 0;
+	}
+
+	auxsec.answer = '.';
+
+	return auxsec;
+
 }
