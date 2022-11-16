@@ -1,7 +1,7 @@
 #include "libreria.h"
 
 
-void readPacients(string nameFilePacient, int * sizeListPacientUnrecoverable, pacient *& listPacientUnrecoverable) //leo todos los pacientes (menos los que fallecieron)
+void readPacients(string nameFilePacient, int * sizeListPacientUnrecoverable, pacient *& listPacientUnrecoverable, int sizeListAppointment, appointment* listAppointment) //leo todos los pacientes (menos los que fallecieron)
 {
 	fstream filePacient;
 	filePacient.open(nameFilePacient, ios::in);
@@ -16,7 +16,7 @@ void readPacients(string nameFilePacient, int * sizeListPacientUnrecoverable, pa
 	while (filePacient) {
 		filePacient >> aux.dni >> dummy >> aux.namePacient >> dummy >> aux.lastNAmePacient >> dummy
 			>> aux.sex >> dummy >> aux.dateBirth >> dummy >> aux.state >> dummy >> aux.idInsurance;
-		keep = keepingUpWithThePacients(aux); //función que se fija si el paciente es recuperable --> ultima consulta hace menos de 10 años
+		keep = keepingUpWithThePacients(aux, sizeListAppointment, listAppointment); //función que se fija si el paciente es recuperable --> ultima consulta hace menos de 10 años
 		if (keep == 1) // 1: recuperable, 2: irrecuperable, 3: no me importa
 			//funcion de agregar paciente a lista de posibles recuperables
 		else if(keep == 2)
