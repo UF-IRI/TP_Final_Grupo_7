@@ -54,6 +54,7 @@ typedef struct secretaryList {
 	long unsigned int dni;
 	string medicalInsurance;
 	string idDoctor;
+	string cellphoneNumber;
 };
 
 
