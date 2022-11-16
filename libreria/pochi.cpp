@@ -48,4 +48,41 @@ int keepingUpWithThePacients(pacient aux, int sizeListAppointment, appointment* 
 	
 }
 
+bool insuranceList(string nameFilePacient, string** list, int* sizeList) //genera array de obras sociales
+{
+	fstream filePacient;
+	filePacient.open(nameFilePacient, ios::in);
+	if (sizeList == nullptr || list == nullptr || *list == nullptr || !(filePacient.is_open()))
+		return false;
 
+	//para leer
+	string dummy;
+	char coma;
+	pacient aux;
+	filePacient >> dummy >> coma >> dummy >> coma >> dummy >> coma >> dummy >> coma >> dummy >> coma >> dummy >> coma >> dummy; // leo la primera linea --> encabezados
+
+	
+
+	while (filePacient)
+	{
+		filePacient >> aux.dni >> coma >> aux.namePacient >> coma >> aux.lastNAmePacient >> coma >> aux.sex >> coma >> aux.dateBirth >> coma >> aux.state >> coma >> aux.idInsurance;
+		alreadythere = false;
+		for (int i = 0; i < *sizelist; i++)
+		{
+			if (**list[i] == aux.idInsurance) //ya lo tenía en la lista --> no lo agrego
+			{
+				break;//para no seguir comparando si ya lo encontré
+			}
+		}
+		if (i==*sizeList) //significa que nunca hizo el break --> no lo encontró
+		{
+			string* newList = new string[*sizeList + 1];
+			newList[*sizeList] = aux.idInsurance; //redimensiono el array para agregar las obras sociales distintas
+		}
+	}
+	filePacient.close;
+	*sizeList=*sizeList+1;
+	delete* list;
+	*list = newList;
+	return true;
+}
