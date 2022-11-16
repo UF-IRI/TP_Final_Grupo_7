@@ -71,7 +71,7 @@ time_t lastAppointment(unsigned int dniAux, int sizeListAppointment, appointment
 void addAppointment(int* sizeListAppointment, appointment*& listAppointment, appointment aux);
 //ALMA
 void findContact(string nameFileContacts, contact* aux, long unsigned int DNI);
-secretaryList convertToSecretary(pacient aux, string nameFileAppointment); //recibe un paciente y carga los datos 
+secretaryList convertToSecretary(pacient aux, string nameFileAppointment, string nameFileContacts); //recibe un paciente y carga los datos 
 																	//en un struct del tipo secretaria y busca el id-medico
 																	//en el arch de consultas
 //POCHI
