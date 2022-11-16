@@ -77,6 +77,7 @@ void findContact(string nameFileContacts, contact* aux, long unsigned int DNI);
 secretaryList convertToSecretary(pacient aux, string nameFileAppointment, string nameFileContacts); //recibe un paciente y carga los datos 
 																	//en un struct del tipo secretaria y busca el id-medico
 																	//en el arch de consultas
+bool doctorIdList(string nameFileAppointment, string** list, int* sizeList);
 //POCHI
 int keepingUpWithThePacients(pacient aux, int sizeListAppointment, appointment *listAppointment);
 bool insuranceList(string nameFilePacient, string** list, int*sizeList); //genera array de obras sociales
