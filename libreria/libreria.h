@@ -81,4 +81,8 @@ bool doctorIdList(string nameFileAppointment, string** list, int* sizeList);
 //POCHI
 int keepingUpWithThePacients(pacient aux, int sizeListAppointment, appointment *listAppointment);
 bool insuranceList(string nameFilePacient, string** list, int*sizeList); //genera array de obras sociales
-appointment generateApp(appointment** list, int* size, long unsigned int DNI); //generar una consulta random y agregarla a la lista
+void generateApp(appointment** list, int* size, long unsigned int DNI); //generar una consulta random y agregarla a la lista
+//AGREGAR LO DEL MÉDICO A GENERATEAPP
+
+
+
