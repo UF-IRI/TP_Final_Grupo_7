@@ -55,6 +55,7 @@ typedef struct secretaryList {
 	string medicalInsurance;
 	string idDoctor;
 	string cellphoneNumber;
+	string answer;
 };
 
 
