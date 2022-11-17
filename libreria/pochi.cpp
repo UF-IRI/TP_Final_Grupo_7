@@ -3,7 +3,7 @@
 
 int keepingUpWithThePacients(pacient aux, int sizeListAppointment, appointment* listAppointment) 
 {
-	int category=-1;
+	int category = -1;
 	appointment app;
 	bool went;
 	if (aux.state != "internado" && aux.state != "Internado" && aux.state != "fallecido" && aux.state != "Fallecido")
