@@ -122,7 +122,7 @@ void secretary(string SecretaryFileName, int sizeFile) //falta lo de escribir un
 	int appointmentNewListSize = 0;
 	int appSize = 0;
 	bool medicalInsuranceArray = (pacientFile, &insuranceList, &insuranceListSize);
-	readAppointment(appointmentFile, &appSize, &appList);
+	readAppointment(appointmentFile, &appSize, appList);
 
 	int a = 0;
 	for (int k = 0; k < sizeFile; k++)
