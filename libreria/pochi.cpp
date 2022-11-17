@@ -195,9 +195,7 @@ void generateApp(appointment** list, int* size, long unsigned int DNI, int sizeL
 	*list = newList;
 
 	*size = *size + 1;
-
 	return;
-
 }
 
 

@@ -8,7 +8,7 @@ using namespace std;
 
 //STRUCTS:
 
-typedef struct appointment {
+typedef struct {
 	unsigned int dniPacient;
 	string dateAppointment;
 	string dateRequest;
@@ -16,29 +16,29 @@ typedef struct appointment {
 	string idDoctor;
 } appointment;
 
-typedef struct contact {
-	unsigned int dni;
+typedef struct {
+	unsigned int dniContact;
 	string numberTelephone;
 	string numberPhone;
 	string adress;
 	string mail;
 } contact;
 
-typedef struct doctor {
+typedef struct {
 	string doctorId;
 	string nameDoctor;
 	string lastNameDoctor;
 	string specialty;
 	string telephoneDoctor;
 	bool active;
-};
+} doctor;
 
-typedef struct insurance {
+typedef struct {
 	unsigned int idInsurance;
 	string nameInsurance;
 } insurance;
 
-typedef struct pacient {
+typedef struct {
 	long unsigned int dni;
 	string namePacient;
 	string lastNAmePacient;
@@ -46,16 +46,16 @@ typedef struct pacient {
 	string dateBirth;
 	string state; //muerto, internado, no se sabe
 	string idInsurance;
-}pacient;
+} pacient;
 
 typedef struct secretaryList {
-	string namePacient;
-	string lastNamePacient;
-	long unsigned int dni;
-	string medicalInsurance;
-	string idDoctor;
-	string cellphoneNumber;
-	string answer;
+	string namePacientSecL;
+	string lastNamePacientSecL;
+	long unsigned int dniSecL;
+	string medicalInsuranceSecL;
+	string idDoctorSecL;
+	string cellphoneNumberSecL;
+	string answerSecL;
 };
 
 
@@ -63,11 +63,12 @@ typedef struct secretaryList {
 //FUNCIONES:
 //AGOS
 time_t convertDate(string dato);
-void newFile(string SecretaryFileName, pacient*& listPacient, int size); //recibir un array de secretaria
-void secretary(string SecretaryFileName, int* sizeFile, string MedicalInsuranceFile); //corregir
+void newFile(string SecretaryFileName, secretaryList*& listPacient, int size); //recibir un array de secretaria
+void secretary(string SecretaryFileName, int sizeFile); 
+void appointmentList(string AppointmentFileName, appointment*& list, int* appSize);
 //LOREN
-void readPacients(string nameFilePacient, int* sizeListPacientUnrecoverable, pacient*& listPacientUnrecoverable, int sizeListAppointment, appointment*listAppointment, string nameFileContact);
-void addPacient(int* sizeListPacientUnrecoverable, pacient*& listPacientUnrecoverable, pacient aux);
+void readPacients(string nameFilePacient, int* sizeListPacientUnrecoverable, pacient*& listPacientUnrecoverable, int sizeListAppointment, appointment* listAppointment, string nameFileContact);
+void addPacientUnrecoverable(int* sizeListPacientUnrecoverable, pacient*& listPacientUnrecoverable, pacient aux);
 void readAppointment(string nameFileAppointment, int* sizeListAppointment, appointment*& listAppointment);
 time_t lastAppointment(unsigned int dniAux, int sizeListAppointment, appointment* listAppointment, appointment* lastApp);
 void addAppointment(int* sizeListAppointment, appointment*& listAppointment, appointment aux);
@@ -83,7 +84,7 @@ bool insuranceList(string nameFilePacient, string** list, int*sizeList); //gener
 void generateApp(appointment** list, int* size, long unsigned int DNI, int sizeListAppointment, appointment* listAppointment); //función que crea una consulta random y la agrega a un array de consultas para la secretaría
 //AGOS FIJATE QUE CAMBIE LOS PARAMETROOOOOOOOOOS
 void addSecetaryList(int* sizeList, secretaryList aux, secretaryList** listSec);
-//AGREGAR LO DEL MÉDICO A GENERATEAPP
+
 
 
 
