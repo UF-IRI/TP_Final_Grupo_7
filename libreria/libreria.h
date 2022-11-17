@@ -14,7 +14,7 @@ typedef struct appointment {
 	string dateRequest;
 	bool asistance;
 	string idDoctor;
-} appointment;
+};
 
 typedef struct contact {
 	unsigned int dni;
@@ -22,7 +22,7 @@ typedef struct contact {
 	string numberPhone;
 	string adress;
 	string mail;
-} contact;
+};
 
 typedef struct doctor {
 	string doctorId;
@@ -36,7 +36,7 @@ typedef struct doctor {
 typedef struct insurance {
 	unsigned int idInsurance;
 	string nameInsurance;
-} insurance;
+};
 
 typedef struct pacient {
 	long unsigned int dni;
@@ -46,7 +46,7 @@ typedef struct pacient {
 	string dateBirth;
 	string state; //muerto, internado, no se sabe
 	string idInsurance;
-}pacient;
+};
 
 typedef struct secretaryList {
 	string namePacient;
@@ -63,11 +63,11 @@ typedef struct secretaryList {
 //FUNCIONES:
 //AGOS
 time_t convertDate(string dato);
-void newFile(string SecretaryFileName, pacient*& listPacient, int size); //recibir un array de secretaria
-void secretary(string SecretaryFileName, int* sizeFile, string MedicalInsuranceFile); //corregir
+void newFile(string SecretaryFileName, secretaryList*& listPacient, int size); //recibir un array de secretaria
+void secretary(string SecretaryFileName, int sizeFile); 
 //LOREN
 void readPacients(string nameFilePacient, int* sizeListPacientUnrecoverable, pacient*& listPacientUnrecoverable, int sizeListAppointment, appointment* listAppointment, string nameFileContact);
-void addPacient(int* sizeListPacientUnrecoverable, pacient*& listPacientUnrecoverable, pacient aux);
+void addPacientUnrecoverable(int* sizeListPacientUnrecoverable, pacient*& listPacientUnrecoverable, pacient aux);
 void readAppointment(string nameFileAppointment, int* sizeListAppointment, appointment*& listAppointment);
 time_t lastAppointment(unsigned int dniAux, int sizeListAppointment, appointment* listAppointment, appointment* lastApp);
 void addAppointment(int* sizeListAppointment, appointment*& listAppointment, appointment aux);

@@ -1,6 +1,5 @@
 #include "libreria.h"
 
-
 void readPacients(string nameFilePacient, int * sizeListPacientUnrecoverable, pacient *& listPacientUnrecoverable, int sizeListAppointment, appointment* listAppointment, string nameFileContact) //leo todos los pacientes (menos los que fallecieron)
 {
 	fstream filePacient;
@@ -144,6 +143,6 @@ void createFileUnrecoverable(string nameFileUnrecoverable, int sizeListPacientUn
 		i++;
 	}
 	fileUnrecoverable.close();
-	delete[]listPacientUnrecoverable;
+	delete[]listPacientUnrecoverable; //lo deleteo aca en vez de ene el main(seria lo mismo en teoria)
 	return;
 }
