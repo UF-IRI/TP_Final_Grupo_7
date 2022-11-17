@@ -79,7 +79,7 @@ bool insuranceList(string nameFilePacient, string** list, int* sizeList) //gener
 		if (i==*sizeList) //significa que nunca hizo el break --> no lo encontró
 		{
 			
-			newList[*sizeList] = aux.idInsurance; //redimensiono el array para agregar las obras sociales distintas
+			newList[*sizeList] = aux.idInsurance;
 		}
 	}
 	filePacient.close();
