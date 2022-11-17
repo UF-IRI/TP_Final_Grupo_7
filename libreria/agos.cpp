@@ -127,7 +127,7 @@ void secretary(string SecretaryFileName, int sizeFile) //falta lo de escribir un
 	int a = 0;
 	for (int k = 0; k < sizeFile; k++)
 	{
-		findContact(contactFile, &contactPacient, finalList[k].dni);
+		findContact(contactFile, &contactPacient, finalList[k].dniSecL);
 		if (&contactPacient != nullptr) //hago todo siempre y cuando lo haya encontrado
 		{
 			for (a = 0; a < 10; a++) //llamo como maximo 10 veces cada paciente
@@ -138,7 +138,7 @@ void secretary(string SecretaryFileName, int sizeFile) //falta lo de escribir un
 					comeBack = rand() % 2;//0: no quiere volver, 1: quiere volver
 					if (comeBack == 1)
 					{
-						generateApp(&appNewList,&appointmentNewListSize,finalList[k].dni,appSize, appList);
+						generateApp(&appNewList,&appointmentNewListSize,finalList[k].dniSecL,appSize, appList);
 						finalList[k].answerSecL = "El paciente ha programado una nueva consulta";
 
 						change = rand() % 3;//0: no quiere cambiar ningun dato 1:cambio su obra social 
