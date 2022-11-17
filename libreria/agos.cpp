@@ -112,7 +112,7 @@ void secretary(string SecretaryFileName, int sizeFile) //falta lo de escribir un
 	int appointmentNewListSize = 0;
 	int appSize = 0;
 	bool medicalInsuranceArray = (pacientFile, &insuranceList, &insuranceListSize);
-	appointmentList(appointmentFile, &appSize, appList);
+	appointmentList(appointmentFile, appList, &appSize);
 
 	int a = 0;
 	for (int k = 0; k < sizeFile; k++)
@@ -128,7 +128,7 @@ void secretary(string SecretaryFileName, int sizeFile) //falta lo de escribir un
 					comeBack = rand() % 2;//0: no quiere volver, 1: quiere volver
 					if (comeBack == 1)
 					{
-						generateApp(&appNewList,&appointmentNewListSize,finalList[k].dni,appSize, &appList);
+						generateApp(&appNewList,&appointmentNewListSize,finalList[k].dni,appSize, appList);
 						finalList[k].answer = "El paciente ha programado una nueva consulta";
 
 						change = rand() % 3;//0: no quiere cambiar ningun dato 1:cambio su obra social 

@@ -8,37 +8,37 @@ using namespace std;
 
 //STRUCTS:
 
-typedef struct appointment {
+typedef struct appointment{
 	unsigned int dniPacient;
 	string dateAppointment;
 	string dateRequest;
 	bool asistance;
 	string idDoctor;
-};
+} appointment;
 
-typedef struct contact {
+typedef struct contact{
 	unsigned int dni;
 	string numberTelephone;
 	string numberPhone;
 	string adress;
 	string mail;
-};
+} contact;
 
-typedef struct doctor {
+typedef struct doctor{
 	string doctorId;
 	string nameDoctor;
 	string lastNameDoctor;
 	string specialty;
 	string telephoneDoctor;
 	bool active;
-};
+} doctor;
 
-typedef struct insurance {
+typedef struct insurance{
 	unsigned int idInsurance;
 	string nameInsurance;
-};
+} insurance;
 
-typedef struct pacient {
+typedef struct pacient{
 	long unsigned int dni;
 	string namePacient;
 	string lastNAmePacient;
@@ -46,9 +46,9 @@ typedef struct pacient {
 	string dateBirth;
 	string state; //muerto, internado, no se sabe
 	string idInsurance;
-};
+} pacient;
 
-typedef struct secretaryList {
+typedef struct secretaryList{
 	string namePacient;
 	string lastNamePacient;
 	long unsigned int dni;
@@ -56,7 +56,7 @@ typedef struct secretaryList {
 	string idDoctor;
 	string cellphoneNumber;
 	string answer;
-};
+} secretaryList;
 
 
 
