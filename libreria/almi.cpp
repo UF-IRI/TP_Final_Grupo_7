@@ -21,8 +21,8 @@ void findContact(string nameFileContacts, contact* aux, long unsigned int DNI)
 
 	while (read)
 	{
-		read >> *aux.dni >> coma >> *aux.numberTelephone >> coma >> *aux.numberPhone >> coma >> *aux.address >> coma >> *aux.mail;
-		if (*aux.dni == DNI)
+		read >> *aux.dniContact >> coma >> *aux.numberTelephone >> coma >> *aux->numberPhone >> coma >> *aux.->adress >> coma >> *aux.->mail;
+		if (*aux.dniContact == DNI)
 		{
 			found = true;
 			break;
@@ -44,16 +44,16 @@ secretaryList convertToSecretary(pacient aux, appointment* listAppointment, int 
 {
 	secretaryList auxsec;
 	bool found2 = false;
-	auxsec.dni = aux.dni;
-	auxsec.namePacient = aux.namePacient;
-	auxsec.lastNamePacient = aux.lastNAmePacient;
-	auxsec.medicalInsurance = aux.idInsurance;
+	auxsec.dniSecL = aux.dniSecL;
+	auxsec.namePacientSecL = aux.namePacient;
+	auxsec.lastNamePacientSecL = aux.lastNAmePacient;
+	auxsec.medicalInsuranceSecL = aux.idInsurance;
 
 	fstream readcon;
 	readcon.open(nameFileContacts, ios::in); //abro el archivo de contactos para leerme el telefono de contacto del paciente q recibo
 	if (!(readcon.is_open()))
 	{
-		auxsec.dni = 0;
+		auxsec.dniSecL = 0;
 	}
 	char coma;
 	string dummy;
@@ -64,7 +64,7 @@ secretaryList convertToSecretary(pacient aux, appointment* listAppointment, int 
 	appointment lastApp;
 	time_t dummys = lastAppointment(aux.dni, sizeListAppointment, listAppointment, &lastApp); //llamo a la funccion lastappointmente que me devuele la struct de ultima consulta por referencia
 	
-	auxsec.idDoctor = lastApp.idDoctor; //solo me importa el id Doctor de la ultima consulta(el resto ni me lo guardo)
+	auxsec.idDoctorSecL = lastApp.idDoctor; //solo me importa el id Doctor de la ultima consulta(el resto ni me lo guardo)
 	
 	string cellphoneaux;
 	readcon >> dummy >> coma >> dummy >> coma >> dummy >> coma >> dummy >> coma >> dummy;//header(no me interesa)
