@@ -62,11 +62,21 @@ void newFile(string SecretaryFileName, secretaryList*& listPacient, int size)
 	fp.open(SecretaryFileName, ios::out);
 	if (!(fp.is_open()))
 		return;
-
+	/*
+	typedef struct secretaryList {
+	string namePacientSecL;
+	string lastNamePacientSecL;
+	long unsigned int dniSecL;
+	string medicalInsuranceSecL;
+	string idDoctorSecL;
+	string cellphoneNumberSecL;
+	string answerSecL;
+};
+	*/
 	fp << "DNI, Nombre, Apellido, Telefono, ObraSocial, ID-Medico, Estado" << endl;
 	for (int i = 0; i < size; i++)
 	{
-		fp << listPacient[i].dni << " , " << listPacient[i].namePacient << " , " << listPacient[i].lastNamePacient << " , " << listPacient[i].cellphoneNumber<<" , "<<listPacient[i].medicalInsurance<<" , "<<listPacient[i].answer<< endl;
+		fp << listPacient[i].dniSecL << " , " << listPacient[i].namePacientSecL << " , " << listPacient[i].lastNamePacientSecL<< " , " << listPacient[i].cellphoneNumberSecL<<" , "<<listPacient[i].medicalInsuranceSecL<< " , "<<listPacient[i].idDoctorSecL<<" , " << listPacient[i].answerSecL << endl;
 	}
 	fp.close();
 }
@@ -93,7 +103,7 @@ void secretary(string SecretaryFileName, int sizeFile) //falta lo de escribir un
 	int i = 0;
 	while (fp)//cargo la lista con los datos
 	{
-		fp >> finalList[i].dni >> comma >> finalList[i].namePacient >> comma >> finalList[i].lastNamePacient >> comma >> finalList[i].cellphoneNumber >> comma >> finalList[i].medicalInsurance >> comma >> finalList[i].idDoctor >> comma >> finalList[i].answer; //leo los datos en el array
+		fp >> finalList[i].dniSecL >> comma >> finalList[i].namePacientSecL >> comma >> finalList[i].lastNamePacientSecL >> comma >> finalList[i].cellphoneNumberSecL >> comma >> finalList[i].medicalInsuranceSecL >> comma >> finalList[i].idDoctorSecL >> comma >> finalList[i].answerSecL; //leo los datos en el array
 		i++;
 	}
 
@@ -112,7 +122,7 @@ void secretary(string SecretaryFileName, int sizeFile) //falta lo de escribir un
 	int appointmentNewListSize = 0;
 	int appSize = 0;
 	bool medicalInsuranceArray = (pacientFile, &insuranceList, &insuranceListSize);
-	readAppointment(appointmentFile, int* sizeListAppointment, appointment * &listAppointment);
+	readAppointment(appointmentFile, &appSize, &appList);
 
 	int a = 0;
 	for (int k = 0; k < sizeFile; k++)
@@ -129,7 +139,7 @@ void secretary(string SecretaryFileName, int sizeFile) //falta lo de escribir un
 					if (comeBack == 1)
 					{
 						generateApp(&appNewList,&appointmentNewListSize,finalList[k].dni,appSize, appList);
-						finalList[k].answer = "El paciente ha programado una nueva consulta";
+						finalList[k].answerSecL = "El paciente ha programado una nueva consulta";
 
 						change = rand() % 3;//0: no quiere cambiar ningun dato 1:cambio su obra social 
 						
@@ -137,11 +147,11 @@ void secretary(string SecretaryFileName, int sizeFile) //falta lo de escribir un
 						{
 							if (medicalInsuranceArray)
 							{
-								string aux=finalList[k].medicalInsurance; //para que no sea la misma q tenia antes
+								string aux=finalList[k].medicalInsuranceSecL; //para que no sea la misma q tenia antes
 								do
 								{
 									idInsurance = rand() % insuranceListSize;
-									finalList[k].medicalInsurance = insuranceList[idInsurance];
+									finalList[k].medicalInsuranceSecL = insuranceList[idInsurance];
 
 								} while (aux == insuranceList[idInsurance]);
 							}
@@ -150,13 +160,13 @@ void secretary(string SecretaryFileName, int sizeFile) //falta lo de escribir un
 					}
 					else //no quiere volver
 					{
-						finalList[k].answer = "El paciente no desea volver";
+						finalList[k].answerSecL = "El paciente no desea volver";
 					}
 					break;
 				}
 			}
 			if (a == 10) //si recorri el for entero entonces no contesto
-				finalList[k].answer = "El paciente no pudo ser contactado";
+				finalList[k].answerSecL= "El paciente no pudo ser contactado";
 		}
 	}
 
@@ -167,7 +177,7 @@ void secretary(string SecretaryFileName, int sizeFile) //falta lo de escribir un
 	fp << "DNI, Nombre, Apellido, Telefono, ObraSocial, ID-Medico, Estado" << endl;
 	for (int i = 0; i < sizeFile; i++)
 	{
-		fp << finalList[i].dni << " , " << finalList[i].namePacient << " , " << finalList[i].lastNamePacient << " , " << finalList[i].cellphoneNumber << " , " << finalList[i].medicalInsurance << " , " << finalList[i].answer << endl;
+		fp << finalList[i].dniSecL << " , " << finalList[i].namePacientSecL << " , " << finalList[i].lastNamePacientSecL << " , " << finalList[i].cellphoneNumberSecL << " , " << finalList[i].medicalInsuranceSecL << " , " << finalList[i].idDoctorSecL<<" , "<<finalList[i].answerSecL << endl;
 	}
 	fp.close();
 
