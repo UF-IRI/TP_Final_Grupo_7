@@ -63,6 +63,8 @@ bool insuranceList(string nameFilePacient, string** list, int* sizeList) //gener
 	bool alreadythere;
 	int i;
 
+	string* newList = new string[*sizeList + 1];
+
 	while (filePacient)
 	{
 		filePacient >> aux.dni >> coma >> aux.namePacient >> coma >> aux.lastNAmePacient >> coma >> aux.sex >> coma >> aux.dateBirth >> coma >> aux.state >> coma >> aux.idInsurance;
@@ -76,7 +78,7 @@ bool insuranceList(string nameFilePacient, string** list, int* sizeList) //gener
 		}
 		if (i==*sizeList) //significa que nunca hizo el break --> no lo encontró
 		{
-			string* newList = new string[*sizeList + 1];
+			
 			newList[*sizeList] = aux.idInsurance; //redimensiono el array para agregar las obras sociales distintas
 		}
 	}
@@ -109,14 +111,14 @@ void addSecetaryList(int* sizeList, secretaryList aux, secretaryList** listSec)
 
 }
 
-void generateApp(appointment** list, int* size, long unsigned int DNI, int sizeListAppointment, appointment* listAppointment)
+void generateApp(appointment*& list, int* size, long unsigned int DNI, int sizeListAppointment, appointment* listAppointment)
 {
 	srand(time(NULL));
 	//HOY EN TRES VARIABLES
 	time_t current = time(NULL);
 	tm *today;
 	today = localtime(&current);
-	string dateReq = to_string(today.tm_mday) + "/" + to_string(*today.tm_mon) + "/" + to_string(*today.tm_mday);
+	string dateReq = to_string(today->tm_mon) + "/" + to_string(today->tm_mday) + "/" + to_string(today->tm_mon);
 	//FECHA CONSULTA EN TRES VARIABLES
 	tm dateNewApp;
 	time_t compareNewApp;//la voy a usar para comparar con la fecha actual y asegurarme de que el día que me genera no haya pasado
@@ -128,7 +130,7 @@ void generateApp(appointment** list, int* size, long unsigned int DNI, int sizeL
 	{
 		again = false;
 		//genero un año (este año o el año que viene)
-		dateNewApp.tm_year = rand() % 3+*today.tm_year-1900 ;  //le resto 1900 para convertirlo a time_t, después los vuelvo a sumar
+		dateNewApp.tm_year = rand() % 3+today->tm_year-1900 ;  //le resto 1900 para convertirlo a time_t, después los vuelvo a sumar
 		dateNewApp.tm_mon = rand() % 12; //lo haría +1 pero para pasarlo a time_t le tengo que restar uno entonces no hago nada
 		if (dateNewApp.tm_mon == 2)
 		{
@@ -154,11 +156,16 @@ void generateApp(appointment** list, int* size, long unsigned int DNI, int sizeL
 			dateNewApp.tm_mon = dateNewApp.tm_mon + 1;
 			int cont = 0;
 			 		
-			finalDate = to_string(dateNewApp.tm_mday) + "/" + to_string(dateNewApp.tm_mon) + "/" + to_string(dateNewApp.tm_year);//las uno y las convierto en un string
-
+			finalDate = to_string(dateNewApp.tm_mon) + "/" + to_string(dateNewApp.tm_mday) + "/" + to_string(dateNewApp.tm_year);//las uno y las convierto en un string
+			appointment* newList = new appointment[*size + 1];
+			int i;
+			for (i = 0; i < *size; i++)
+			{
+				newList[i] = list[i];
+			}
 			for (int i = 0; i < *size; i++)
 			{
-				if (*list[i].dateAppointment == finalDate)
+				if (list[i].dateAppointment == finalDate)
 				{
 					cont++;
 				}
@@ -189,11 +196,11 @@ void generateApp(appointment** list, int* size, long unsigned int DNI, int sizeL
 	int i;
 	for (i = 0; i < *size; i++)
 	{
-		newList[i] = *list[i];
+		newList[i] = list[i];
 	}
 	newList[i] = newApp;
-	delete* list;
-	*list = newList;
+	delete list;
+	list = newList;
 
 	*size = *size + 1;
 	return;
