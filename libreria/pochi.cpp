@@ -114,8 +114,9 @@ void generateApp(appointment** list, int* size, long unsigned int DNI, int sizeL
 	srand(time(NULL));
 	//HOY EN TRES VARIABLES
 	time_t current = time(NULL);
-	tm *today = localtime(&current);
-	string dateReq = to_string(*today.tm_mday) + "/" + to_string(*today.tm_mon) + "/" + to_string(*today.tm_mday);
+	tm *today;
+	today = localtime(&current);
+	string dateReq = to_string(today.tm_mday) + "/" + to_string(*today.tm_mon) + "/" + to_string(*today.tm_mday);
 	//FECHA CONSULTA EN TRES VARIABLES
 	tm dateNewApp;
 	time_t compareNewApp;//la voy a usar para comparar con la fecha actual y asegurarme de que el día que me genera no haya pasado

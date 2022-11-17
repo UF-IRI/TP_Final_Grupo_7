@@ -19,12 +19,12 @@ time_t convertDate(string dato)
 			{
 			case 0:
 			{
-				auxD[k] = dato[i];
+				auxM[k] = dato[i];
 				break;
 			}
 			case 1:
 			{
-				auxM[k] = dato[i];
+				auxD[k] = dato[i];
 				break;
 			}
 			case 2:
