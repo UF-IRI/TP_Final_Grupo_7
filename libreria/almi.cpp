@@ -21,7 +21,7 @@ void findContact(string nameFileContacts, contact* aux, long unsigned int DNI)
 
 	while (read)
 	{
-		read >> *aux.dniContact >> coma >> *aux.numberTelephone >> coma >> *aux->numberPhone >> coma >> *aux.->adress >> coma >> *aux.->mail;
+		read >> *aux.dniContact >> coma >> *aux.numberTelephone >> coma >> *aux.numberPhone >> coma >> *aux.adress >> coma >> *aux.mail;
 		if (*aux.dniContact == DNI)
 		{
 			found = true;
