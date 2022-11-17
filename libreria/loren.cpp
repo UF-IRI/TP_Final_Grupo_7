@@ -128,7 +128,7 @@ time_t lastAppointment(unsigned int dniAux, int sizeListAppointment, appointment
 }
 
 
-void createFileUnrecoverable(string nameFileUnrecoverable, int sizeListPacientUnrecoverable, pacient* listPacientUnrecoverable)
+void writeFileUnrecoverable(string nameFileUnrecoverable, int sizeListPacientUnrecoverable, pacient* listPacientUnrecoverable)
 {
 	fstream fileUnrecoverable;
 	fileUnrecoverable.open(nameFileUnrecoverable, ios::out);
