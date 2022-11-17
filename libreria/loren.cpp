@@ -23,7 +23,7 @@ void readPacients(string nameFilePacient, int * sizeListPacientUnrecoverable, pa
 		if (group == 1) // 1: recuperable (lo paso a secretaria)
 		{
 			auxSec = convertToSecretary(aux, listAppointment, sizeListAppointment, nameFileContact); //
-			if (auxSec.dni != 0)
+			if (auxSec.dniSecL != 0)
 			{
 				addSecetaryList(&sizeSec, auxSec, &listSec);
 			}
