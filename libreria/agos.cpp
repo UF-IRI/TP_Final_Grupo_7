@@ -102,11 +102,17 @@ void secretary(string SecretaryFileName, int sizeFile) //falta lo de escribir un
 	//QUEDA CON EL PATH DE MI COMPU??
 	string pacientFile = "C:\\Users\\agosn\\source\\repos\\TP_Final_Grupo_7\\data_files\\input\\IRI_Pacientes.csv";
 	string contactFile = "C:\\Users\\agosn\\source\\repos\\TP_Final_Grupo_7\\data_files\\input\\IRI_Consultas.csv";
+	string appointmentFile = "C:\\Users\\agosn\\Source\\Repos\\TP_Final_Grupo_7\\data_files\\input\\IRI_Consultas.csv";
 	
 	contact contactPacient;
 	int insuranceListSize=0;
 	string* insuranceList=new string[0];//en la funcion se le asigna una nueva direccion
+	appointment* appNewList = new appointment[0];
+	appointment* appList = new appointment[0];
+	int appointmentNewListSize = 0;
+	int appSize = 0;
 	bool medicalInsuranceArray = (pacientFile, &insuranceList, &insuranceListSize);
+	appointmentList(appointmentFile, &appSize, appList);
 
 	int a = 0;
 	for (int k = 0; k < sizeFile; k++)
@@ -122,7 +128,7 @@ void secretary(string SecretaryFileName, int sizeFile) //falta lo de escribir un
 					comeBack = rand() % 2;//0: no quiere volver, 1: quiere volver
 					if (comeBack == 1)
 					{
-						//nueva consulta!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+						generateApp(&appNewList,&appointmentNewListSize,finalList[k].dni,appSize, &appList);
 						finalList[k].answer = "El paciente ha programado una nueva consulta";
 
 						change = rand() % 3;//0: no quiere cambiar ningun dato 1:cambio su obra social 
@@ -165,9 +171,47 @@ void secretary(string SecretaryFileName, int sizeFile) //falta lo de escribir un
 	}
 	fp.close();
 
+	fp.open(appointmentFile, ios::app); //agrego las nuevas consultas al archivo original
+	if (!(fp.is_open()))
+		return;
+	for (int j = 0; j < appointmentNewListSize; j++)
+	{
+		fp << appNewList[j].dniPacient << " , " << appNewList[j].dateRequest << " , " << appNewList[j].dateAppointment << " , " << appNewList[j].asistance << " , " << appNewList[j].idDoctor << endl;
+	}
+	fp.close();
+
 	delete[] finalList;
 	finalList = NULL;
 	delete[] insuranceList;
 	insuranceList = NULL;
+	delete[] appNewList;
+	appNewList = NULL;
+	delete[] appList;
+	appList = NULL;
 	
+}
+
+void appointmentList(string AppointmentFileName, appointment*& list, int* appSize)
+{
+	//genero una lista en memoria dinamica con todas las consultas que hay y me guardo el tamanio 
+	fstream fp;
+	fp.open(AppointmentFileName, ios::in);
+	if (!(fp.is_open()))
+		return;
+
+	string dummy;
+	char comma;
+
+	fp >> dummy >> comma >> dummy >> comma >> dummy >> comma >> dummy >> comma >> dummy; //encabezado
+	
+	int i = 0;
+	while (fp)
+	{
+		fp >> list[i].dniPacient >> comma >> list[i].dateRequest >> comma >> list[i].dateAppointment >> comma >> list[i].asistance >> comma >> list[i].idDoctor;
+		i++;
+	}
+
+	*appSize = i;
+	fp.close();
+
 }
