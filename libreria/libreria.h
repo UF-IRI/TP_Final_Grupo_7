@@ -48,7 +48,7 @@ typedef struct {
 	string idInsurance;
 } pacient;
 
-typedef struct secretaryList {
+typedef struct  {
 	string namePacientSecL;
 	string lastNamePacientSecL;
 	long unsigned int dniSecL;
@@ -56,7 +56,7 @@ typedef struct secretaryList {
 	string idDoctorSecL;
 	string cellphoneNumberSecL;
 	string answerSecL;
-};
+}secretaryList;
 
 
 
