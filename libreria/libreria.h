@@ -8,7 +8,7 @@ using namespace std;
 
 //STRUCTS:
 
-typedef struct {
+typedef struct Appointment{
 	unsigned int dniPacient;
 	string dateAppointment;
 	string dateRequest;
@@ -16,7 +16,7 @@ typedef struct {
 	string idDoctor;
 } appointment;
 
-typedef struct {
+typedef struct Contact{
 	unsigned int dniContact;
 	string numberTelephone;
 	string numberPhone;
@@ -24,7 +24,7 @@ typedef struct {
 	string mail;
 } contact;
 
-typedef struct {
+typedef struct Doctor{
 	string doctorId;
 	string nameDoctor;
 	string lastNameDoctor;
@@ -33,12 +33,12 @@ typedef struct {
 	bool active;
 } doctor;
 
-typedef struct {
+typedef struct Insurance{
 	unsigned int idInsurance;
 	string nameInsurance;
 } insurance;
 
-typedef struct {
+typedef struct Pacient{
 	long unsigned int dni;
 	string namePacient;
 	string lastNAmePacient;
@@ -48,7 +48,7 @@ typedef struct {
 	string idInsurance;
 } pacient;
 
-typedef struct  {
+typedef struct  SecretaryList{
 	string namePacientSecL;
 	string lastNamePacientSecL;
 	long unsigned int dniSecL;
@@ -71,7 +71,7 @@ void addPacientUnrecoverable(int* sizeListPacientUnrecoverable, pacient*& listPa
 void readAppointment(string nameFileAppointment, int* sizeListAppointment, appointment*& listAppointment);
 time_t lastAppointment(unsigned int dniAux, int sizeListAppointment, appointment* listAppointment, appointment* lastApp);
 void addAppointment(int* sizeListAppointment, appointment*& listAppointment, appointment aux);
-void createFileUnrecoverable(string nameFileUnrecoverable, int sizeListPacientUnrecoverable, pacient* listPacientUnrecoverable);
+void writeFileUnrecoverable(string nameFileUnrecoverable, int sizeListPacientUnrecoverable, pacient* listPacientUnrecoverable);
 //ALMA
 void findContact(string nameFileContacts, contact* aux, long unsigned int DNI);
 secretaryList convertToSecretary(pacient aux, appointment* listAppointment, int sizeListAppointment, string nameFileContacts); //recibe un paciente y carga los datos 
