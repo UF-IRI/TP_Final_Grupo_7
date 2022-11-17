@@ -1,7 +1,9 @@
 #include "iri.cpp"
 #include "libreria.h"
 #include "pochi.cpp"
-//#include "loren.cpp"
+#include "loren.cpp"
+#include "agos.cpp"
+#include "almi.cpp"
 
 int main() {
 
