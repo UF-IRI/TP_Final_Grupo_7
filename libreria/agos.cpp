@@ -112,7 +112,7 @@ void secretary(string SecretaryFileName, int sizeFile) //falta lo de escribir un
 	int appointmentNewListSize = 0;
 	int appSize = 0;
 	bool medicalInsuranceArray = (pacientFile, &insuranceList, &insuranceListSize);
-	appointmentList(appointmentFile, appList, &appSize);
+	readAppointment(appointmentFile, int* sizeListAppointment, appointment * &listAppointment);
 
 	int a = 0;
 	for (int k = 0; k < sizeFile; k++)
@@ -191,27 +191,3 @@ void secretary(string SecretaryFileName, int sizeFile) //falta lo de escribir un
 	
 }
 
-void appointmentList(string AppointmentFileName, appointment*& list, int* appSize)
-{
-	//genero una lista en memoria dinamica con todas las consultas que hay y me guardo el tamanio 
-	fstream fp;
-	fp.open(AppointmentFileName, ios::in);
-	if (!(fp.is_open()))
-		return;
-
-	string dummy;
-	char comma;
-
-	fp >> dummy >> comma >> dummy >> comma >> dummy >> comma >> dummy >> comma >> dummy; //encabezado
-	
-	int i = 0;
-	while (fp)
-	{
-		fp >> list[i].dniPacient >> comma >> list[i].dateRequest >> comma >> list[i].dateAppointment >> comma >> list[i].asistance >> comma >> list[i].idDoctor;
-		i++;
-	}
-
-	*appSize = i;
-	fp.close();
-
-}

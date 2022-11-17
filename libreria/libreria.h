@@ -48,7 +48,7 @@ typedef struct {
 	string idInsurance;
 } pacient;
 
-typedef struct secretaryList {
+typedef struct  {
 	string namePacientSecL;
 	string lastNamePacientSecL;
 	long unsigned int dniSecL;
@@ -56,7 +56,7 @@ typedef struct secretaryList {
 	string idDoctorSecL;
 	string cellphoneNumberSecL;
 	string answerSecL;
-};
+}secretaryList;
 
 
 
@@ -65,7 +65,6 @@ typedef struct secretaryList {
 time_t convertDate(string dato);
 void newFile(string SecretaryFileName, secretaryList*& listPacient, int size); //recibir un array de secretaria
 void secretary(string SecretaryFileName, int sizeFile); 
-void appointmentList(string AppointmentFileName, appointment*& list, int* appSize);
 //LOREN
 void readPacients(string nameFilePacient, int* sizeListPacientUnrecoverable, pacient*& listPacientUnrecoverable, int sizeListAppointment, appointment* listAppointment, string nameFileContact);
 void addPacientUnrecoverable(int* sizeListPacientUnrecoverable, pacient*& listPacientUnrecoverable, pacient aux);
