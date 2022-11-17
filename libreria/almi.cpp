@@ -17,11 +17,11 @@ void findContact(string nameFileContacts, contact* aux, long unsigned int DNI)
 
 	if (!(read.is_open())) return;
 
-	getline(read, dummy); //revisar, fuente loren
+	read >> dummy >> coma >> dummy >> coma >> dummy >> coma >> dummy >> coma >> dummy;
 
 	while (read)
 	{
-		read >> *aux.dniContact >> coma >> *aux.numberTelephone >> coma >> *aux.numberPhone >> coma >> *aux.adress >> coma >> *aux.mail;
+		read >>*aux.dniContact >> coma >> *aux.numberTelephone >> coma >> *aux.numberPhone >> coma >> *aux.adress >> coma >> *aux.mail;
 		if (*aux.dniContact == DNI)
 		{
 			found = true;
@@ -44,7 +44,7 @@ secretaryList convertToSecretary(pacient aux, appointment* listAppointment, int 
 {
 	secretaryList auxsec;
 	bool found2 = false;
-	auxsec.dniSecL = aux.dniSecL;
+	auxsec.dniSecL = aux.dni;
 	auxsec.namePacientSecL = aux.namePacient;
 	auxsec.lastNamePacientSecL = aux.lastNAmePacient;
 	auxsec.medicalInsuranceSecL = aux.idInsurance;
@@ -74,7 +74,7 @@ secretaryList convertToSecretary(pacient aux, appointment* listAppointment, int 
 		
 		if (dniaux == aux.dni)
 		{
-			auxsec.cellphoneNumber = cellphoneaux;
+			auxsec.cellphoneNumberSecL = cellphoneaux;
 			found2 = true;
 		}
 
@@ -82,9 +82,9 @@ secretaryList convertToSecretary(pacient aux, appointment* listAppointment, int 
 
 	if (!(found2))
 	{
-		auxsec.cellphoneNumber = "0"; //si no econtro el contacto me lleno el campo con un 0 (no va a poder llamar al paciente). En este caso se podría pasar otro dato como mail, etc pero es muy retorcido para plantear
+		auxsec.cellphoneNumberSecL = "0"; //si no econtro el contacto me lleno el campo con un 0 (no va a poder llamar al paciente). En este caso se podría pasar otro dato como mail, etc pero es muy retorcido para plantear
 	}
-	auxsec.answer = '.'; //inicializo la respuesta del paciente con un . (luego la secretaría llenara este campo)
+	auxsec.answerSecL = '.'; //inicializo la respuesta del paciente con un . (luego la secretaría llenara este campo)
 	return auxsec;
 }
 
