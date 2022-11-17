@@ -8,7 +8,7 @@ using namespace std;
 
 //STRUCTS:
 
-typedef struct appointment{
+typedef struct {
 	unsigned int dniPacient;
 	string dateAppointment;
 	string dateRequest;
@@ -16,15 +16,15 @@ typedef struct appointment{
 	string idDoctor;
 } appointment;
 
-typedef struct contact{
-	unsigned int dni;
+typedef struct {
+	unsigned int dniContact;
 	string numberTelephone;
 	string numberPhone;
 	string adress;
 	string mail;
 } contact;
 
-typedef struct doctor{
+typedef struct {
 	string doctorId;
 	string nameDoctor;
 	string lastNameDoctor;
@@ -33,12 +33,12 @@ typedef struct doctor{
 	bool active;
 } doctor;
 
-typedef struct insurance{
+typedef struct {
 	unsigned int idInsurance;
 	string nameInsurance;
 } insurance;
 
-typedef struct pacient{
+typedef struct {
 	long unsigned int dni;
 	string namePacient;
 	string lastNAmePacient;
@@ -48,15 +48,15 @@ typedef struct pacient{
 	string idInsurance;
 } pacient;
 
-typedef struct secretaryList{
-	string namePacient;
-	string lastNamePacient;
-	long unsigned int dni;
-	string medicalInsurance;
-	string idDoctor;
-	string cellphoneNumber;
-	string answer;
-} secretaryList;
+typedef struct secretaryList {
+	string namePacientSecL;
+	string lastNamePacientSecL;
+	long unsigned int dniSecL;
+	string medicalInsuranceSecL;
+	string idDoctorSecL;
+	string cellphoneNumberSecL;
+	string answerSecL;
+};
 
 
 
@@ -83,7 +83,7 @@ bool insuranceList(string nameFilePacient, string** list, int*sizeList); //gener
 void generateApp(appointment** list, int* size, long unsigned int DNI, int sizeListAppointment, appointment* listAppointment); //función que crea una consulta random y la agrega a un array de consultas para la secretaría
 //AGOS FIJATE QUE CAMBIE LOS PARAMETROOOOOOOOOOS
 void addSecetaryList(int* sizeList, secretaryList aux, secretaryList** listSec);
-//AGREGAR LO DEL MÉDICO A GENERATEAPP
+
 
 
 

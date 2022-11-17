@@ -14,6 +14,6 @@ int main() {
 	int unrecoverableSize = 0;
 	pacient* listPacientUnrecoverable = new pacient[unrecoverableSize];
 	string pacientFile = "IRI_Pacientes.csv";
-	readPacients(pacientFile, &unrecoverableSize, listPacientUnrecoverable, appointmentSize, listAppointment, contactFile);
+	//readPacients( pacientFile, &unrecoverableSize, listPacientUnrecoverable, appointmentSize, listAppointment);
 
 }
