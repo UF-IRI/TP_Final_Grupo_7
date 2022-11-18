@@ -1,24 +1,26 @@
 #include "iri.cpp"
+#include <iostream>
 #include "libreria.h"
 
 int main() 
 {
 
-	string contactFile = "IRI_Contactos.csv";
+	string contactFile = "C:\\Users\\Mariano\\OneDrive\\Documentos\\Lorenzo\\Universidad\\1er año\\IRI\\Tp final\\data_files\\input\\IRI_Contactos.csv";
 	string appointmentFile = "IRI_Consultas.csv";
-	string pacientFile = "IRI_Pacientes.csv";
-	string filePacientUnrecoverable = "IRI_Irrecuperables.csv";
-	string filePacientRecoverable = "IRI_Recuperables.csv";
+	//string appointmentFile = "C:\\Users\\Mariano\\OneDrive\\Documentos\\Lorenzo\\Universidad\\1er año\\IRI\\Tp final\\data_files\\input\\IRI_Consultas.csv";
+	string pacientFile = "C:\\Users\\Mariano\\OneDrive\\Documentos\\Lorenzo\\Universidad\\1er año\\IRI\\Tp final\\data_files\\input\\IRI_Pacientes.csv";
+	string filePacientUnrecoverable = "C:\\Users\\Mariano\\OneDrive\\Documentos\\Lorenzo\\Universidad\\1er año\\IRI\\Tp final\\data_files\\output\\IRI_Irrecuperables.csv";
+	string filePacientRecoverable = "C:\\Users\\Mariano\\OneDrive\\Documentos\\Lorenzo\\Universidad\\1er año\\IRI\\Tp final\\data_files\\output\\IRI_Recuperables.csv";
 	int appointmentSize=0;
 	appointment* listAppointment = new appointment[appointmentSize];
 	readAppointment(appointmentFile, &appointmentSize, listAppointment);
-	int sizeSecretaryList;
+/*	int sizeSecretaryList;
 	int unrecoverableSize = 0;
 	pacient* listPacientUnrecoverable = new pacient[unrecoverableSize];
 	readPacient( pacientFile, &unrecoverableSize, listPacientUnrecoverable, appointmentSize, listAppointment, pacientFile, filePacientUnrecoverable, &sizeSecretaryList);
 	secretary(filePacientRecoverable, sizeSecretaryList);
 
-	/*
+
 	me creo lista de app
 	leo el archivo de app y las guardo en una lista
 	llamo a la funcion read pacients:

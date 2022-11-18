@@ -34,7 +34,6 @@ void readPacient(string nameFilePacient, int * sizeListPacientUnrecoverable, pac
 	writeFileUnrecoverable(filePacientUnrecoverable, *sizeListPacientUnrecoverable, listPacientUnrecoverable);
 	filePacient.close();
 	return;
-
 }
 
 
@@ -74,7 +73,6 @@ void readAppointment(string nameFileAppointment, int *sizeListAppointment, appoi
 	}
 	fileAppointment.close();
 	return;
-
 }
 
 void addAppointment(int* sizeListAppointment, appointment *& listAppointment, appointment aux) //funcion de agregarr consulta a la lista de consultas
