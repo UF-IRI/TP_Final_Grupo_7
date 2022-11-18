@@ -18,7 +18,7 @@ int main() {
 	
 	int unrecoverableSize = 0;
 	pacient* listPacientUnrecoverable = new pacient[unrecoverableSize];
-	readPacients( pacientFile, &unrecoverableSize, listPacientUnrecoverable, appointmentSize, listAppointment, pacientFile);
+	readPacients( pacientFile, &unrecoverableSize, listPacientUnrecoverable, appointmentSize, listAppointment, pacientFile, filePacientUnrecoverable);
 	
 	/*
 	me creo lista de app
