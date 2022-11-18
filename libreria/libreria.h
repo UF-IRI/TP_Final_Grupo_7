@@ -80,7 +80,7 @@ secretaryList convertToSecretary(pacient aux, appointment* listAppointment, int 
 //POCHI
 int keepingUpWithThePacients(pacient aux, int sizeListAppointment, appointment *listAppointment);
 bool insuranceList(string nameFilePacient, string** list, int*sizeList); //genera array de obras sociales
-void generateApp(appointment** list, int* size, long unsigned int DNI, int sizeListAppointment, appointment* listAppointment); //función que crea una consulta random y la agrega a un array de consultas para la secretaría
+void generateApp(appointment*& list, int* size, long unsigned int DNI, int sizeListAppointment, appointment* listAppointment); //función que crea una consulta random y la agrega a un array de consultas para la secretaría
 //AGOS FIJATE QUE CAMBIE LOS PARAMETROOOOOOOOOOS
 void addSecetaryList(int* sizeList, secretaryList aux, secretaryList** listSec);
 

@@ -33,6 +33,7 @@ void readPacients(string nameFilePacient, int * sizeListPacientUnrecoverable, pa
 	}
 	filePacient.close();
 	return;
+
 }
 
 
