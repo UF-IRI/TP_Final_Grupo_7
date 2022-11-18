@@ -63,11 +63,7 @@ void readAppointment(string nameFileAppointment, int *sizeListAppointment, appoi
 	fstream fileAppointment;
 	fileAppointment.open(nameFileAppointment, ios::in);
 	if (!(fileAppointment.is_open()))
-	{
-		cout << "no funciono";
 		return;
-	}
-	else cout << "arranco";
 	
 	string dummy;
 	fileAppointment >> dummy >> dummy >> dummy >> dummy >> dummy >> dummy >> dummy >> dummy >> dummy;

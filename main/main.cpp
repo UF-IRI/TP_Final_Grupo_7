@@ -15,21 +15,21 @@ int main()
 	readAppointment(appointmentFile, &appointmentSize, listAppointment);
 	int sizeSecretaryList=0;
 	int unrecoverableSize = 0;
+	secretaryList* listSec = new secretaryList[0];
 	pacient* listPacientUnrecoverable = new pacient[unrecoverableSize];
-	readPacient( pacientFile, &unrecoverableSize, listPacientUnrecoverable, appointmentSize, listAppointment, pacientFile, filePacientUnrecoverable, &sizeSecretaryList);
-	newFile(filePacientRecoverable, , sizeSecretaryList);
+	readPacient( pacientFile, &unrecoverableSize, listPacientUnrecoverable, appointmentSize, listAppointment, pacientFile, filePacientUnrecoverable, &sizeSecretaryList,listSec);
+	newFile(filePacientRecoverable,listSec, sizeSecretaryList);
 	secretary(filePacientRecoverable, sizeSecretaryList);
 
-	/*
-	me creo lista de app
-	leo el archivo de app y las guardo en una lista
-	llamo a la funcion read pacients:
-		leo el archivo de pacientes
-			llamo a una funcion para ver si es recuperable o irrecuperable
-				-irrecuperable: arma lista pacientunrecoverable--> y me escribe el file 
-				-recuperable: arma lista de tipo secretaria  --> la guarda en un archivo
-	llemo a secretaria y le paso: 
-			
-	*/
+
+
+	delete[] listAppointment;
+	listAppointment = NULL;
+	delete[] listSec;
+	listSec = NULL;
+	delete[] listPacientUnrecoverable;
+	listPacientUnrecoverable = NULL;
+
+	return 0;
 
 }
