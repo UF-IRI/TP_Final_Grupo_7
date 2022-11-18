@@ -62,17 +62,7 @@ void newFile(string SecretaryFileName, secretaryList*& listPacient, int size)
 	fp.open(SecretaryFileName, ios::out);
 	if (!(fp.is_open()))
 		return;
-	/*
-	typedef struct secretaryList {
-	string namePacientSecL;
-	string lastNamePacientSecL;
-	long unsigned int dniSecL;
-	string medicalInsuranceSecL;
-	string idDoctorSecL;
-	string cellphoneNumberSecL;
-	string answerSecL;
-};
-	*/
+
 	fp << "DNI, Nombre, Apellido, Telefono, ObraSocial, ID-Medico, Estado" << endl;
 	for (int i = 0; i < size; i++)
 	{
