@@ -138,7 +138,7 @@ void secretary(string SecretaryFileName, int sizeFile) //falta lo de escribir un
 					comeBack = rand() % 2;//0: no quiere volver, 1: quiere volver
 					if (comeBack == 1)
 					{
-						generateApp(&appNewList,&appointmentNewListSize,finalList[k].dniSecL,appSize, appList);
+						generateApp(appNewList,&appointmentNewListSize,finalList[k].dniSecL,appSize, appList); 
 						finalList[k].answerSecL = "El paciente ha programado una nueva consulta";
 
 						change = rand() % 3;//0: no quiere cambiar ningun dato 1:cambio su obra social 
