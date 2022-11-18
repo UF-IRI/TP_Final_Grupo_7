@@ -5,7 +5,6 @@ namespace funciones::tests
 time_t convertDate(string dato);
 void newFile(string SecretaryFileName, secretaryList*& listPacient, int size); //recibir un array de secretaria
 void secretary(string SecretaryFileName, int sizeFile);
-void appointmentList(string AppointmentFileName, appointment*& list, int* appSize);
 */
 
 TEST(convertDate, test1)
@@ -26,7 +25,3 @@ TEST(secretary,test1) //aca va a haber que hacer varios
 
 }
 
-TEST(appointmentList, test1)
-{
-z
-}
