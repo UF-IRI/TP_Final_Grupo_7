@@ -100,9 +100,9 @@ void secretary(string SecretaryFileName, int sizeFile) //falta lo de escribir un
 	fp.close();
 
 	//QUEDA CON EL PATH DE MI COMPU??
-	string pacientFile = "C:\\Users\\agosn\\source\\repos\\TP_Final_Grupo_7\\data_files\\input\\IRI_Pacientes.csv";
-	string contactFile = "C:\\Users\\agosn\\source\\repos\\TP_Final_Grupo_7\\data_files\\input\\IRI_Consultas.csv";
-	string appointmentFile = "C:\\Users\\agosn\\Source\\Repos\\TP_Final_Grupo_7\\data_files\\input\\IRI_Consultas.csv";
+	string pacientFile = "IRI_Pacientes.csv";
+	string contactFile = "IRI_Contactos.csv";
+	string appointmentFile = "IRI_Consultas.csv";
 	
 	contact contactPacient;
 	int insuranceListSize=0;
