@@ -132,6 +132,8 @@ time_t lastAppointment(unsigned int dniAux, int sizeListAppointment, appointment
 
 void writeFileUnrecoverable(string nameFileUnrecoverable, int sizeListPacientUnrecoverable, pacient* listPacientUnrecoverable)
 {
+	if (listPacientUnrecoverable == nullptr)
+		return;
 	fstream fileUnrecoverable;
 	fileUnrecoverable.open(nameFileUnrecoverable, ios::out);
 	if (listPacientUnrecoverable == nullptr || !(fileUnrecoverable.is_open()))
