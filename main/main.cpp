@@ -19,7 +19,7 @@ int main() {
 	int unrecoverableSize = 0;
 	pacient* listPacientUnrecoverable = new pacient[unrecoverableSize];
 	readPacients( pacientFile, &unrecoverableSize, listPacientUnrecoverable, appointmentSize, listAppointment, pacientFile);
-	writeFileUnrecoverable(filePacientUnrecoverable, unrecoverableSize, listPacientUnrecoverable);
+	
 	/*
 	me creo lista de app
 	leo el archivo de app y las guardo en una lista
@@ -27,7 +27,7 @@ int main() {
 		leo el archivo de pacientes
 			llamo a una funcion para ver si es recuperable o irrecuperable
 				-irrecuperable: arma lista pacientunrecoverable
-					
+				-recuperable: arma lista de tipo secretaria 
 			
 	*/
 

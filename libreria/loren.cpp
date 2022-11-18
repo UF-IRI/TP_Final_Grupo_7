@@ -1,6 +1,6 @@
 #include "libreria.h"
 
-void readPacients(string nameFilePacient, int * sizeListPacientUnrecoverable, pacient *& listPacientUnrecoverable, int sizeListAppointment, appointment* listAppointment, string nameFileContact) //leo todos los pacientes (menos los que fallecieron)
+void readPacients(string nameFilePacient, int * sizeListPacientUnrecoverable, pacient *& listPacientUnrecoverable, int sizeListAppointment, appointment* listAppointment, string nameFileContact, string filePacientUnrecoverable) //leo todos los pacientes (menos los que fallecieron)
 {
 	fstream filePacient;
 	filePacient.open(nameFilePacient, ios::in); //abro el archivo de paciente para lectura
@@ -31,6 +31,7 @@ void readPacients(string nameFilePacient, int * sizeListPacientUnrecoverable, pa
 		else if(group == 2) // grupo 2: irrecuperable(lo agrego a la lista de irrecuperables)
 			addPacientUnrecoverable(sizeListPacientUnrecoverable, listPacientUnrecoverable, aux); //funcion de agregar paciente a la lista de irrecuperables
 	}
+	writeFileUnrecoverable(filePacientUnrecoverable, *sizeListPacientUnrecoverable, listPacientUnrecoverable);
 	filePacient.close();
 	return;
 
