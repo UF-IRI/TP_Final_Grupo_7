@@ -89,9 +89,10 @@ secretaryList convertToSecretary(pacient aux, appointment* listAppointment, int 
 
 	if (!(found2))
 	{
-		auxsec.cellphoneNumberSecL = "0"; //si no econtro el contacto me lleno el campo con un 0 (no va a poder llamar al paciente). En este caso se podría pasar otro dato como mail, etc pero es muy retorcido para plantear
+		auxsec.cellphoneNumberSecL = "."; //si no econtro el contacto me lleno el campo con un 0 (no va a poder llamar al paciente). En este caso se podría pasar otro dato como mail, etc pero es muy retorcido para plantear
+	    auxsec.answerSecL = '.'; //inicializo la respuesta del paciente con un . (luego la secretaría llenara este campo)
+	
 	}
-	auxsec.answerSecL = '.'; //inicializo la respuesta del paciente con un . (luego la secretaría llenara este campo)
 	return auxsec;
 }
 
