@@ -29,7 +29,7 @@ int main()
 	listSec = NULL;
 	delete[] listPacientUnrecoverable;
 	listPacientUnrecoverable = NULL;
-
+	//listo
 	return 0;
 
 }

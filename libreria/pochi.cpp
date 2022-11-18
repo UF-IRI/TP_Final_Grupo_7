@@ -1,6 +1,6 @@
 
 #include "libreria.h"
-
+//funciones
 int keepingUpWithThePacients(pacient aux, int sizeListAppointment, appointment* listAppointment) 
 {
 	int category = -1;
