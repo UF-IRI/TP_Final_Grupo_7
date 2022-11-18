@@ -2,7 +2,7 @@
 
 
 
-void findContact(string nameFileContacts, contact* aux, long unsigned int DNI)
+bool findContact(string nameFileContacts, contact* aux, long unsigned int DNI)
 {
 	//lo leo, mientras lo leo voy llenando el contenido del puntero, booleano true lo encontre. si
 	//el bool sigue siendo false al puntero le digo null 
@@ -12,16 +12,23 @@ void findContact(string nameFileContacts, contact* aux, long unsigned int DNI)
 	fstream read;
 	char coma = 0;
 	string dummy;
+	string comma;
+
+	bool cannotOpen=false;
 
 	read.open(nameFileContacts, ios::in);
 
-	if (!(read.is_open())) return;
+	if (!(read.is_open()))
+	{
+		cannotOpen = false;
+		return cannotOpen;
+	}
 
 	read >> dummy >> coma >> dummy >> coma >> dummy >> coma >> dummy >> coma >> dummy;
 
 	while (read)
 	{
-		read >>aux->dniContact >> coma >> aux->numberTelephone >> coma >> aux->numberPhone >> coma >> aux->adress >> coma >> aux->mail;
+		read >>aux->dniContact >> comma >> aux->numberTelephone >> comma >> aux->numberPhone >> comma >> aux->adress >> comma >> aux->mail;
 		if (aux->dniContact == DNI)
 		{
 			found = true;
@@ -35,7 +42,7 @@ void findContact(string nameFileContacts, contact* aux, long unsigned int DNI)
 		aux = nullptr;
 
 	}
-	return;
+	return found;
 }
 
 secretaryList convertToSecretary(pacient aux, appointment* listAppointment, int sizeListAppointment, string nameFileContacts) //recibe un paciente y carga los datos 
