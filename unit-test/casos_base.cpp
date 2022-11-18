@@ -6,7 +6,7 @@ namespace Casos_Base::tests {
 	
 	TEST(findContact, caso1) {
 		//LINEA 69 ARCHIVO CONTACTOS: 859052988,+86 163 839 6359,+48 621 670 1298,Barby,aplayer1v@theatlantic.com
-		string contactFile = "IRI_Contactos.csv";
+		string contactFile = "Contactos.csv";
 		contact aux1;
 		aux1.dniContact = 859052988;
 		aux1.adress = "Barby";
@@ -17,13 +17,12 @@ namespace Casos_Base::tests {
 		bool couldOpen=findContact(contactFile, &aux2, aux1.dniContact);
 		EXPECT_FALSE(couldOpen); //no abre bien el archivo
 		
-		/*
 		EXPECT_THAT(aux2.dniContact, aux1.dniContact);
 		EXPECT_THAT(aux2.adress, aux1.adress);
 		EXPECT_THAT(aux2.mail, aux1.mail);
 		EXPECT_THAT(aux2.numberPhone, aux1.numberPhone);
 		EXPECT_THAT(aux2.numberTelephone, aux1.numberTelephone);
-		*/
+	
 
 	}
 	TEST(convertDate, test1) {

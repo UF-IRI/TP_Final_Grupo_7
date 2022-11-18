@@ -19,12 +19,12 @@ time_t convertDate(string dato)
 			{
 			case 0:
 			{
-				auxM[k] = dato[i];
+				auxD[k] = dato[i];
 				break;
 			}
 			case 1:
 			{
-				auxD[k] = dato[i];
+				auxM[k] = dato[i];
 				break;
 			}
 			case 2:
@@ -35,7 +35,6 @@ time_t convertDate(string dato)
 			}
 			k++;
 			i++;
-
 		}
 		cont++;
 		i++;
@@ -100,9 +99,9 @@ void secretary(string SecretaryFileName, int sizeFile) //falta lo de escribir un
 	fp.close();
 
 	//QUEDA CON EL PATH DE MI COMPU??
-	string pacientFile = "IRI_Pacientes.csv";
-	string contactFile = "IRI_Contactos.csv";
-	string appointmentFile = "IRI_Consultas.csv";
+	string pacientFile = "Pacientes.csv";
+	string contactFile = "Contactos.csv";
+	string appointmentFile = "Consultas.csv";
 	
 	contact contactPacient;
 	int insuranceListSize=0;
@@ -131,7 +130,7 @@ void secretary(string SecretaryFileName, int sizeFile) //falta lo de escribir un
 						generateApp(appNewList,&appointmentNewListSize,finalList[k].dniSecL,appSize, appList); 
 						finalList[k].answerSecL = "El paciente ha programado una nueva consulta";
 
-						change = rand() % 3;//0: no quiere cambiar ningun dato 1:cambio su obra social 
+						change = rand() % 2;//0: no quiere cambiar ningun dato 1:cambio su obra social 
 						
 						if (change == 1)
 						{
