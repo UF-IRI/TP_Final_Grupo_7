@@ -1,8 +1,12 @@
 #include "iri.cpp"
 #include "libreria.h"
+#include "agos.cpp"
+#include "almi.cpp"
+#include "loren.cpp"
+#include "pochi.cpp"
 
-
-int main() {
+int main() 
+{
 
 	string contactFile = "IRI_Contactos.csv";
 	string appointmentFile = "IRI_Consultas.csv";
