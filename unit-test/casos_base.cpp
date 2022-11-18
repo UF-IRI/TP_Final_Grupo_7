@@ -2,13 +2,6 @@
 #include "libreria.h"
 
 
-
-//bool insuranceList(string nameFilePacient, string** list, int*sizeList); //genera array de obras sociales
-//void newFile(string SecretaryFileName, secretaryList*& listPacient, int size); //recibir un array de secretaria
-//void secretary(string SecretaryFileName, int sizeFile); 
-
-
-
 namespace Casos_Base::tests {
 	
 	TEST(findContact, caso1) {
@@ -21,8 +14,8 @@ namespace Casos_Base::tests {
 		aux1.numberTelephone = "+86 163 839 6359";
 		aux1.numberPhone = "+48 621 670 1298";
 		contact aux2;
-		bool aver=findContact(contactFile, &aux2, aux1.dniContact);
-		EXPECT_FALSE(aver);
+		bool couldOpen=findContact(contactFile, &aux2, aux1.dniContact);
+		EXPECT_FALSE(couldOpen); //no abre bien el archivo
 		
 		/*
 		EXPECT_THAT(aux2.dniContact, aux1.dniContact);
@@ -90,9 +83,6 @@ namespace Casos_Base::tests {
 		int category = keepingUpWithThePacients(aux, sizeList, list);
 		EXPECT_THAT(category, 2);
 	}
-	TEST(insuranceList, probando)
-	{
 
-	}
 	
 }

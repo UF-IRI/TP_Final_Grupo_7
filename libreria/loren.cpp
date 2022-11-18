@@ -66,6 +66,7 @@ void readAppointment(string nameFileAppointment, int *sizeListAppointment, appoi
 		cout << "no funciono";
 		return;
 	}
+	else cout << "arranco";
 	
 	string dummy;
 	fileAppointment >> dummy >> dummy >> dummy >> dummy >> dummy >> dummy >> dummy >> dummy >> dummy;
