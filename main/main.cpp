@@ -12,19 +12,21 @@ int main() {
 	int appointmentSize=0;
 	appointment* listAppointment = new appointment[appointmentSize];
 	readAppointment(appointmentFile, &appointmentSize, listAppointment);
-	
+	int sizeSecretaryList;
 	int unrecoverableSize = 0;
 	pacient* listPacientUnrecoverable = new pacient[unrecoverableSize];
-	readPacient( pacientFile, &unrecoverableSize, listPacientUnrecoverable, appointmentSize, listAppointment, pacientFile, filePacientUnrecoverable);
-	
+	readPacient( pacientFile, &unrecoverableSize, listPacientUnrecoverable, appointmentSize, listAppointment, pacientFile, filePacientUnrecoverable, &sizeSecretaryList);
+	secretary(filePacientRecoverable, sizeSecretaryList);
+
 	/*
 	me creo lista de app
 	leo el archivo de app y las guardo en una lista
 	llamo a la funcion read pacients:
 		leo el archivo de pacientes
 			llamo a una funcion para ver si es recuperable o irrecuperable
-				-irrecuperable: arma lista pacientunrecoverable
-				-recuperable: arma lista de tipo secretaria 
+				-irrecuperable: arma lista pacientunrecoverable--> y me escribe el file 
+				-recuperable: arma lista de tipo secretaria  --> la guarda en un archivo
+	llemo a secretaria y le paso: 
 			
 	*/
 
