@@ -66,14 +66,14 @@ time_t convertDate(string dato);
 void newFile(string SecretaryFileName, secretaryList*& listPacient, int size); //recibir un array de secretaria
 void secretary(string SecretaryFileName, int sizeFile); 
 //LOREN
-void readPacient(string nameFilePacient, int* sizeListPacientUnrecoverable, pacient*& listPacientUnrecoverable, int sizeListAppointment, appointment* listAppointment, string nameFileContact, string filePacientUnrecoverable);
+void readPacient(string nameFilePacient, int* sizeListPacientUnrecoverable, pacient*& listPacientUnrecoverable, int sizeListAppointment, appointment* listAppointment, string nameFileContact, string filePacientUnrecoverable, int *sizeSec, secretaryList*& ListSecRet);
 void addPacientUnrecoverable(int* sizeListPacientUnrecoverable, pacient*& listPacientUnrecoverable, pacient aux);
 void readAppointment(string nameFileAppointment, int* sizeListAppointment, appointment*& listAppointment);
 time_t lastAppointment(unsigned int dniAux, int sizeListAppointment, appointment* listAppointment, appointment* lastApp);
 void addAppointment(int* sizeListAppointment, appointment*& listAppointment, appointment aux);
 void writeFileUnrecoverable(string nameFileUnrecoverable, int sizeListPacientUnrecoverable, pacient* listPacientUnrecoverable);
 //ALMA
-void findContact(string nameFileContacts, contact* aux, long unsigned int DNI);
+bool findContact(string nameFileContacts, contact* aux, long unsigned int DNI);
 secretaryList convertToSecretary(pacient aux, appointment* listAppointment, int sizeListAppointment, string nameFileContacts); //recibe un paciente y carga los datos 
 																	//en un struct del tipo secretaria y busca el id-medico
 																	//en el arch de consultas

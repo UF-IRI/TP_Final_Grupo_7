@@ -1,6 +1,6 @@
 #include "libreria.h"
 
-void readPacient(string nameFilePacient, int * sizeListPacientUnrecoverable, pacient *& listPacientUnrecoverable, int sizeListAppointment, appointment* listAppointment, string nameFileContact, string filePacientUnrecoverable) //leo todos los pacientes (menos los que fallecieron)
+void readPacient(string nameFilePacient, int * sizeListPacientUnrecoverable, pacient *& listPacientUnrecoverable, int sizeListAppointment, appointment* listAppointment, string nameFileContact, string filePacientUnrecoverable, int* sizeSec, secretaryList *& ListSecRet) //leo todos los pacientes (menos los que fallecieron)
 {
 	fstream filePacient;
 	filePacient.open(nameFilePacient, ios::in); //abro el archivo de paciente para lectura
@@ -12,8 +12,8 @@ void readPacient(string nameFilePacient, int * sizeListPacientUnrecoverable, pac
 		>> dummy >> dummy;//leo la primera linea del csv (texto inutil)
 
 	pacient aux;
-	int sizeSec=0;
-	secretaryList* listSec = new secretaryList[sizeSec]; //me creo una lista dinamica que es con la que luego haremos el archivo de secretaria
+	*sizeSec=0;
+	secretaryList* listSec = new secretaryList[*sizeSec]; //me creo una lista dinamica que es con la que luego haremos el archivo de secretaria
 	secretaryList auxSec;
 
 	while (filePacient) { //recorro el archivo de pacientes
@@ -25,7 +25,7 @@ void readPacient(string nameFilePacient, int * sizeListPacientUnrecoverable, pac
 			auxSec = convertToSecretary(aux, listAppointment, sizeListAppointment, nameFileContact); //
 			if (auxSec.dniSecL != 0)
 			{
-				addSecetaryList(&sizeSec, auxSec, &listSec);
+				addSecetaryList(sizeSec, auxSec, &listSec);
 			}
 		}	
 		else if(group == 2) // grupo 2: irrecuperable(lo agrego a la lista de irrecuperables)
@@ -33,8 +33,8 @@ void readPacient(string nameFilePacient, int * sizeListPacientUnrecoverable, pac
 	}
 	writeFileUnrecoverable(filePacientUnrecoverable, *sizeListPacientUnrecoverable, listPacientUnrecoverable);
 	filePacient.close();
+	ListSecRet = listSec;
 	return;
-
 }
 
 
@@ -63,7 +63,12 @@ void readAppointment(string nameFileAppointment, int *sizeListAppointment, appoi
 	fstream fileAppointment;
 	fileAppointment.open(nameFileAppointment, ios::in);
 	if (!(fileAppointment.is_open()))
+	{
+		cout << "no funciono";
 		return;
+	}
+	else cout << "arranco";
+	
 	string dummy;
 	fileAppointment >> dummy >> dummy >> dummy >> dummy >> dummy >> dummy >> dummy >> dummy >> dummy;
 	appointment aux;
@@ -74,7 +79,6 @@ void readAppointment(string nameFileAppointment, int *sizeListAppointment, appoi
 	}
 	fileAppointment.close();
 	return;
-
 }
 
 void addAppointment(int* sizeListAppointment, appointment *& listAppointment, appointment aux) //funcion de agregarr consulta a la lista de consultas
@@ -132,6 +136,8 @@ time_t lastAppointment(unsigned int dniAux, int sizeListAppointment, appointment
 
 void writeFileUnrecoverable(string nameFileUnrecoverable, int sizeListPacientUnrecoverable, pacient* listPacientUnrecoverable)
 {
+	if (listPacientUnrecoverable == nullptr)
+		return;
 	fstream fileUnrecoverable;
 	fileUnrecoverable.open(nameFileUnrecoverable, ios::out);
 	if (listPacientUnrecoverable == nullptr || !(fileUnrecoverable.is_open()))
