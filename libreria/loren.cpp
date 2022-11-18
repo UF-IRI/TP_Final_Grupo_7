@@ -1,6 +1,6 @@
 #include "libreria.h"
 
-void readPacients(string nameFilePacient, int * sizeListPacientUnrecoverable, pacient *& listPacientUnrecoverable, int sizeListAppointment, appointment* listAppointment, string nameFileContact, string filePacientUnrecoverable) //leo todos los pacientes (menos los que fallecieron)
+void readPacient(string nameFilePacient, int * sizeListPacientUnrecoverable, pacient *& listPacientUnrecoverable, int sizeListAppointment, appointment* listAppointment, string nameFileContact, string filePacientUnrecoverable) //leo todos los pacientes (menos los que fallecieron)
 {
 	fstream filePacient;
 	filePacient.open(nameFilePacient, ios::in); //abro el archivo de paciente para lectura
