@@ -103,7 +103,7 @@ void addSecetaryList(int* sizeList, secretaryList aux, secretaryList** listSec)
 		newList[i] = *listSec[i];
 	}
 	newList[i] = aux;
-
+	
 	delete[] * listSec;
 	*listSec = newList;
 	*sizeList = *sizeList + 1;

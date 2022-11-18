@@ -66,7 +66,7 @@ time_t convertDate(string dato);
 void newFile(string SecretaryFileName, secretaryList*& listPacient, int size); //recibir un array de secretaria
 void secretary(string SecretaryFileName, int sizeFile); 
 //LOREN
-void readPacients(string nameFilePacient, int* sizeListPacientUnrecoverable, pacient*& listPacientUnrecoverable, int sizeListAppointment, appointment* listAppointment, string nameFileContact);
+void readPacients(string nameFilePacient, int* sizeListPacientUnrecoverable, pacient*& listPacientUnrecoverable, int sizeListAppointment, appointment* listAppointment, string nameFileContact, string filePacientUnrecoverable);
 void addPacientUnrecoverable(int* sizeListPacientUnrecoverable, pacient*& listPacientUnrecoverable, pacient aux);
 void readAppointment(string nameFileAppointment, int* sizeListAppointment, appointment*& listAppointment);
 time_t lastAppointment(unsigned int dniAux, int sizeListAppointment, appointment* listAppointment, appointment* lastApp);
@@ -80,7 +80,7 @@ secretaryList convertToSecretary(pacient aux, appointment* listAppointment, int 
 //POCHI
 int keepingUpWithThePacients(pacient aux, int sizeListAppointment, appointment *listAppointment);
 bool insuranceList(string nameFilePacient, string** list, int*sizeList); //genera array de obras sociales
-void generateApp(appointment** list, int* size, long unsigned int DNI, int sizeListAppointment, appointment* listAppointment); //función que crea una consulta random y la agrega a un array de consultas para la secretaría
+void generateApp(appointment*& list, int* size, long unsigned int DNI, int sizeListAppointment, appointment* listAppointment); //función que crea una consulta random y la agrega a un array de consultas para la secretaría
 //AGOS FIJATE QUE CAMBIE LOS PARAMETROOOOOOOOOOS
 void addSecetaryList(int* sizeList, secretaryList aux, secretaryList** listSec);
 
