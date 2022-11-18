@@ -13,7 +13,7 @@ void readPacient(string nameFilePacient, int * sizeListPacientUnrecoverable, pac
 
 	pacient aux;
 	*sizeSec=0;
-	secretaryList* listSec = new secretaryList[sizeSec]; //me creo una lista dinamica que es con la que luego haremos el archivo de secretaria
+	secretaryList* listSec = new secretaryList[*sizeSec]; //me creo una lista dinamica que es con la que luego haremos el archivo de secretaria
 	secretaryList auxSec;
 
 	while (filePacient) { //recorro el archivo de pacientes
