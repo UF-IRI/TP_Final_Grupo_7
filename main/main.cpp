@@ -8,8 +8,8 @@ int main()
 	string contactFile = "IRI_Contactos.csv";
 	string appointmentFile = "IRI_Consultas.csv";
 	string pacientFile = "IRI_Pacientes.csv";
-	string filePacientUnrecoverable = "C:\\Users\\Mariano\\OneDrive\\Documentos\\Lorenzo\\Universidad\\1er año\\IRI\\Tp final\\data_files\\output\\IRI_Irrecuperables.csv";
-	string filePacientRecoverable = "C:\\Users\\Mariano\\OneDrive\\Documentos\\Lorenzo\\Universidad\\1er año\\IRI\\Tp final\\data_files\\output\\IRI_Recuperables.csv";
+	string filePacientUnrecoverable = "IRI_Irrecuperables.csv";
+	string filePacientRecoverable = "IRI_Recuperables.csv";
 	int appointmentSize=0;
 	appointment* listAppointment = new appointment[appointmentSize];
 	readAppointment(appointmentFile, &appointmentSize, listAppointment);
