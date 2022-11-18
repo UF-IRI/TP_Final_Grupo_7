@@ -6,10 +6,11 @@
 //bool insuranceList(string nameFilePacient, string** list, int*sizeList); //genera array de obras sociales
 //void newFile(string SecretaryFileName, secretaryList*& listPacient, int size); //recibir un array de secretaria
 //void secretary(string SecretaryFileName, int sizeFile); 
-//time_t convertDate(string dato);
+
 
 
 namespace Casos_Base::tests {
+	/*
 	TEST(findContact, caso1) {
 		//LINEA 69 ARCHIVO CONTACTOS: 859052988,+86 163 839 6359,+48 621 670 1298,Barby,aplayer1v@theatlantic.com
 		string contactFile = "IRI_Contactos.csv";
@@ -23,13 +24,13 @@ namespace Casos_Base::tests {
 		bool aver=findContact(contactFile, &aux2, aux1.dniContact);
 		EXPECT_FALSE(aver);
 		
-		/*
+	
 		EXPECT_THAT(aux2.dniContact, aux1.dniContact);
 		EXPECT_THAT(aux2.adress, aux1.adress);
 		EXPECT_THAT(aux2.mail, aux1.mail);
 		EXPECT_THAT(aux2.numberPhone, aux1.numberPhone);
 		EXPECT_THAT(aux2.numberTelephone, aux1.numberTelephone);
-		*/
+
 	}
 	TEST(convertDate, test1) {
 		string hoy="17/11/2022";
@@ -40,9 +41,46 @@ namespace Casos_Base::tests {
 		time_t esperada = mktime(&fecha);
 		time_t real = convertDate(hoy);
 	}
+	*/
+
+	TEST(keepingUpWithThePacients, caso3) {
+		pacient aux;
+		//497757175,Claudette,di Rocca,F,11/8/2005,n/c,Aleman
+		string appointmentFile = "IRI_Consultas.csv";
+		aux.dni = 497757175;
+		aux.namePacient = "Claudette";
+		aux.lastNAmePacient = "di Rocca";
+		aux.sex = 'F';
+		aux.dateBirth = "11/8/2005";
+		aux.state = "n/c";
+		aux.idInsurance = "Aleman";
+		appointment* list = new appointment[0];
+		int sizeList;
+		readAppointment(appointmentFile, &sizeList, list);
+		int category = keepingUpWithThePacients(aux,sizeList,list);
+		EXPECT_THAT(category, 3);
+	}
+
+	TEST(keepingUpWithThePacients, caso2) {
+		pacient aux;
+		//497757175,Claudette,di Rocca,F,11/8/2005,n/c,Aleman
+		string appointmentFile = "IRI_Consultas.csv";
+		aux.dni = 497757175;
+		aux.namePacient = "Claudette";
+		aux.lastNAmePacient = "di Rocca";
+		aux.sex = 'F';
+		aux.dateBirth = "11/8/2005";
+		aux.state = "n/c";
+		aux.idInsurance = "Aleman";
+		appointment* list = new appointment[0];
+		int sizeList;
+		readAppointment(appointmentFile, &sizeList, list);
+		int category = keepingUpWithThePacients(aux, sizeList, list);
+		EXPECT_THAT(category, 3);
+	}
 
 	/*
-	TEST(Casos_Base, Test_Caso3) {
+	TEST(keepingUpWithThePacients, caso3) {
 		ASSERT_THAT(1, 1);
 	}
 	*/
